@@ -17,6 +17,10 @@
             --muted: #a7bdb3;
             --line: rgba(52, 211, 153, 0.18);
             --line-strong: rgba(52, 211, 153, 0.34);
+            --wire-green: #34d399;
+            --wire-blue: #60a5fa;
+            --wire-amber: #fbbf24;
+            --decor-bg: rgba(6, 16, 13, 0.68);
         }
 
         html { scroll-behavior: smooth; }
@@ -47,6 +51,11 @@
 
         .mono { font-family: 'Share Tech Mono', monospace; }
         .hidden { display: none; }
+
+        main, nav, footer {
+            position: relative;
+            z-index: 2;
+        }
 
         .glass-nav {
             background: rgba(6, 16, 13, 0.84);
@@ -111,6 +120,8 @@
         }
 
         .card {
+            position: relative;
+            overflow: hidden;
             background: rgba(9, 22, 18, 0.70);
             border: 1px solid rgba(52, 211, 153, 0.16);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
@@ -121,6 +132,30 @@
             transform: translateY(-3px);
             border-color: rgba(52, 211, 153, 0.34);
             box-shadow: 0 16px 38px rgba(0, 0, 0, 0.24), 0 0 18px rgba(52, 211, 153, 0.055);
+        }
+
+        .card::before,
+        .card::after {
+            content: "";
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-color: rgba(52, 211, 153, 0.22);
+            pointer-events: none;
+        }
+
+        .card::before {
+            top: 10px;
+            left: 10px;
+            border-top: 1px solid rgba(52, 211, 153, 0.22);
+            border-left: 1px solid rgba(52, 211, 153, 0.22);
+        }
+
+        .card::after {
+            bottom: 10px;
+            right: 10px;
+            border-bottom: 1px solid rgba(52, 211, 153, 0.22);
+            border-right: 1px solid rgba(52, 211, 153, 0.22);
         }
 
         .green-btn {
@@ -184,14 +219,179 @@
             box-shadow: 0 0 14px rgba(52, 211, 153, 0.42);
         }
 
+        .page-decor {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .edge-wire {
+            position: absolute;
+            top: 72px;
+            bottom: 24px;
+            width: 120px;
+            opacity: 0.9;
+        }
+
+        .edge-wire.left {
+            left: 0;
+        }
+
+        .edge-wire.right {
+            right: 0;
+        }
+
+        .edge-wire svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .wire-node {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            box-shadow: 0 0 14px currentColor;
+        }
+
+        .wire-node.green {
+            background: var(--wire-green);
+            color: var(--wire-green);
+        }
+
+        .wire-node.blue {
+            background: var(--wire-blue);
+            color: var(--wire-blue);
+        }
+
+        .wire-node.amber {
+            background: var(--wire-amber);
+            color: var(--wire-amber);
+        }
+
+        .top-corner-trace {
+            position: absolute;
+            width: 150px;
+            height: 90px;
+            top: 68px;
+            opacity: 0.55;
+        }
+
+        .top-corner-trace.left {
+            left: 90px;
+        }
+
+        .top-corner-trace.right {
+            right: 90px;
+            transform: scaleX(-1);
+        }
+
+        .hero-tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .tech-badge {
+            border: 1px solid rgba(52, 211, 153, 0.22);
+            background: rgba(8, 20, 17, 0.60);
+            color: rgba(238, 252, 245, 0.72);
+            padding: 0.45rem 0.8rem;
+            border-radius: 999px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 1024px) {
+            .edge-wire,
+            .top-corner-trace {
+                display: none;
+            }
+        }
+
         #modalImage {
             max-height: 85vh;
             width: auto;
             object-fit: contain;
         }
+
+        .pdf-preview {
+            width: 100%;
+            min-height: 72vh;
+            border: 1px solid rgba(52, 211, 153, 0.18);
+            border-radius: 1rem;
+            background: rgba(3, 7, 5, 0.55);
+            overflow: hidden;
+        }
+
+        .pdf-preview iframe {
+            width: 100%;
+            height: 72vh;
+            border: 0;
+            display: block;
+        }
     </style>
 </head>
 <body class="antialiased">
+
+    <!-- ELECTRICAL ENGINEERING EDGE DECOR -->
+    <div class="page-decor" aria-hidden="true">
+
+        <div class="edge-wire left">
+            <svg viewBox="0 0 120 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40 30 V130 H78 V210 H42 V315 H88 V420 H50 V520 H74 V650 H36 V780 H82 V910" stroke="rgba(52, 211, 153, 0.42)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M64 130 H100" stroke="rgba(96, 165, 250, 0.38)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M42 315 H92" stroke="rgba(251, 191, 36, 0.34)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M50 520 H102" stroke="rgba(96, 165, 250, 0.30)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M36 780 H94" stroke="rgba(52, 211, 153, 0.34)" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+
+            <span class="wire-node green" style="left:35px; top:28px;"></span>
+            <span class="wire-node blue" style="left:74px; top:124px;"></span>
+            <span class="wire-node amber" style="left:38px; top:309px;"></span>
+            <span class="wire-node blue" style="left:46px; top:514px;"></span>
+            <span class="wire-node green" style="left:32px; top:774px;"></span>
+        </div>
+
+        <div class="edge-wire right">
+            <svg viewBox="0 0 120 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M82 40 V150 H42 V250 H78 V370 H32 V500 H72 V620 H44 V760 H84 V900" stroke="rgba(52, 211, 153, 0.40)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M42 150 H8" stroke="rgba(96, 165, 250, 0.36)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M78 370 H18" stroke="rgba(251, 191, 36, 0.32)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M72 620 H14" stroke="rgba(96, 165, 250, 0.28)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M84 900 H22" stroke="rgba(52, 211, 153, 0.34)" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+
+            <span class="wire-node green" style="right:33px; top:38px;"></span>
+            <span class="wire-node blue" style="right:73px; top:144px;"></span>
+            <span class="wire-node amber" style="right:70px; top:364px;"></span>
+            <span class="wire-node blue" style="right:64px; top:614px;"></span>
+            <span class="wire-node green" style="right:76px; top:894px;"></span>
+        </div>
+
+        <div class="top-corner-trace left">
+            <svg viewBox="0 0 150 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 20 H70 V42 H136" stroke="rgba(52, 211, 153, 0.30)" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="10" cy="20" r="4" fill="#34d399"/>
+                <circle cx="70" cy="42" r="4" fill="#60a5fa"/>
+                <circle cx="136" cy="42" r="4" fill="#34d399"/>
+            </svg>
+        </div>
+
+        <div class="top-corner-trace right">
+            <svg viewBox="0 0 150 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 20 H70 V42 H136" stroke="rgba(52, 211, 153, 0.30)" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="10" cy="20" r="4" fill="#34d399"/>
+                <circle cx="70" cy="42" r="4" fill="#60a5fa"/>
+                <circle cx="136" cy="42" r="4" fill="#34d399"/>
+            </svg>
+        </div>
+
+    </div>
 
     <!-- NAVIGATION BAR -->
     <nav class="fixed top-0 w-full glass-nav z-40">
@@ -231,6 +431,13 @@
                     <a href="https://www.linkedin.com/in/brando-vasquezr" target="_blank" class="link-chip flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full">
                         LinkedIn
                     </a>
+                </div>
+
+                <div class="hero-tech-badges">
+                    <span class="tech-badge">Embedded Systems</span>
+                    <span class="tech-badge">Control</span>
+                    <span class="tech-badge">Robotics</span>
+                    <span class="tech-badge">Sensors</span>
                 </div>
             </div>
 
@@ -363,10 +570,10 @@
                 <p class="section-label mb-3">Resume Download</p>
                 <h2 class="text-4xl font-black text-emerald-50">Resume</h2>
             </div>
-            <div class="panel p-10 rounded-3xl">
-                <p class="mb-10 text-emerald-50/65 text-lg">Electrical Engineering student with hands-on experience in embedded systems, data analysis, and control-focused projects.</p>
-                
-                <div class="grid md:grid-cols-2 gap-12 mb-12">
+            <div class="panel p-6 md:p-8 rounded-3xl space-y-8">
+                <p class="text-emerald-50/65 text-lg max-w-3xl">Electrical Engineering student with hands-on experience in embedded systems, data analysis, and control-focused projects.</p>
+
+                <div class="grid md:grid-cols-2 gap-12">
                     <div>
                         <h4 class="font-bold mb-6 uppercase text-xs tracking-[0.2em] accent-text">Languages</h4>
                         <div class="flex flex-wrap gap-2">
@@ -388,7 +595,14 @@
                     </div>
                 </div>
 
-                <a href="#" class="inline-block green-btn px-8 py-4 rounded-xl font-bold transition-colors uppercase tracking-wider">Download Full Resume (PDF)</a>
+                <div class="flex flex-wrap gap-4">
+                    <a href="images/Files/Resume%20-%20Brando%20Vasquez%20Rodriguez.pdf" download class="inline-block green-btn px-8 py-4 rounded-xl font-bold transition-colors uppercase tracking-wider">Download Resume (PDF)</a>
+                    <a href="images/Files/UnofficialTranscript_Brando_V.pdf" download class="inline-block green-btn px-8 py-4 rounded-xl font-bold transition-colors uppercase tracking-wider">Download Unofficial Transcript (PDF)</a>
+                </div>
+
+                <div class="pdf-preview">
+                    <iframe src="images/Files/Resume%20-%20Brando%20Vasquez%20Rodriguez.pdf" title="Resume Preview"></iframe>
+                </div>
             </div>
         </section>
 
