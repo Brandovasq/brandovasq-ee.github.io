@@ -99,6 +99,14 @@
 
         .nav-link:hover::after { width: 100%; }
 
+        .mobile-nav-toggle {
+            display: none;
+        }
+
+        .mobile-nav-panel {
+            display: none;
+        }
+
         .section-label {
             font-family: 'Share Tech Mono', monospace;
             color: rgba(52, 211, 153, 0.78);
@@ -567,6 +575,34 @@
         }
 
         @media (max-width: 640px) {
+            .mobile-nav-toggle {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .desktop-nav-links {
+                display: none;
+            }
+
+            .mobile-nav-panel {
+                display: block;
+                border-top: 1px solid rgba(52, 211, 153, 0.14);
+                background: rgba(6, 16, 13, 0.96);
+                backdrop-filter: blur(18px);
+            }
+
+            .mobile-nav-link {
+                width: 100%;
+                text-align: left;
+                padding: 0.9rem 0;
+                border-bottom: 1px solid rgba(52, 211, 153, 0.10);
+            }
+
+            .mobile-nav-link:last-child {
+                border-bottom: 0;
+            }
+
             .hero-name {
                 font-size: clamp(3.8rem, 10vw, 8.8rem);
                 line-height: 0.88;
@@ -706,11 +742,22 @@
     <nav class="fixed top-0 w-full glass-nav z-40">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="font-black text-xl cursor-pointer brand" onclick="showSection('home')">BRANDOVASQ<span class="accent-text">.</span></div>
-            <div class="flex gap-6 text-sm font-semibold text-emerald-50/65">
+            <button type="button" class="mobile-nav-toggle md:hidden text-emerald-50/75 border border-emerald-400/20 rounded-full px-3 py-2 text-xs font-bold tracking-[0.22em] uppercase" onclick="toggleMobileNav()" aria-controls="mobileNavPanel" aria-expanded="false">
+                Menu
+            </button>
+            <div class="desktop-nav-links hidden md:flex gap-6 text-sm font-semibold text-emerald-50/65">
                 <span class="nav-link" onclick="showSection('home')">Home</span>
                 <span class="nav-link" onclick="showSection('projects')">Projects</span>
                 <span class="nav-link" onclick="showSection('experience')">Experience</span>
                 <span class="nav-link" onclick="showSection('resume')">Resume</span>
+            </div>
+        </div>
+        <div id="mobileNavPanel" class="mobile-nav-panel hidden md:hidden px-6 pb-2">
+            <div class="flex flex-col text-sm font-semibold text-emerald-50/75">
+                <span class="nav-link mobile-nav-link" onclick="showSection('home')">Home</span>
+                <span class="nav-link mobile-nav-link" onclick="showSection('projects')">Projects</span>
+                <span class="nav-link mobile-nav-link" onclick="showSection('experience')">Experience</span>
+                <span class="nav-link mobile-nav-link" onclick="showSection('resume')">Resume</span>
             </div>
         </div>
     </nav>
@@ -1057,9 +1104,34 @@
     </div>
 
     <script>
+        function toggleMobileNav() {
+            const mobileNavPanel = document.getElementById('mobileNavPanel');
+            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+            const isOpen = !mobileNavPanel.classList.contains('hidden');
+
+            if (isOpen) {
+                mobileNavPanel.classList.add('hidden');
+                mobileNavToggle.setAttribute('aria-expanded', 'false');
+            } else {
+                mobileNavPanel.classList.remove('hidden');
+                mobileNavToggle.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        function closeMobileNav() {
+            const mobileNavPanel = document.getElementById('mobileNavPanel');
+            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+
+            if (mobileNavPanel && mobileNavToggle) {
+                mobileNavPanel.classList.add('hidden');
+                mobileNavToggle.setAttribute('aria-expanded', 'false');
+            }
+        }
+
         function showSection(sectionId) {
             document.querySelectorAll('.content-section').forEach(section => section.classList.add('hidden'));
             document.getElementById(sectionId).classList.remove('hidden');
+            closeMobileNav();
             window.scrollTo(0, 0);
         }
 
