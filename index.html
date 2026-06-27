@@ -114,7 +114,10 @@
 
         .skills-showcase {
             position: relative;
-            overflow: hidden;
+            overflow: visible;
+            background: transparent;
+            border: 0;
+            box-shadow: none;
         }
 
         .skills-glow {
@@ -122,62 +125,62 @@
             inset: 0;
             pointer-events: none;
             background:
-                radial-gradient(circle at 18% 18%, rgba(255, 214, 0, 0.20), transparent 22%),
-                radial-gradient(circle at 78% 20%, rgba(255, 214, 0, 0.12), transparent 18%),
-                radial-gradient(circle at 24% 78%, rgba(255, 214, 0, 0.12), transparent 20%);
-            opacity: 0.9;
+                radial-gradient(circle at 18% 18%, rgba(52, 211, 153, 0.10), transparent 22%),
+                radial-gradient(circle at 78% 20%, rgba(96, 165, 250, 0.08), transparent 18%),
+                radial-gradient(circle at 24% 78%, rgba(52, 211, 153, 0.08), transparent 20%);
+            opacity: 0.55;
         }
 
         .skill-tab {
-            border: 1px solid rgba(255, 214, 0, 0.24);
-            background: rgba(0, 0, 0, 0.20);
-            color: rgba(226, 232, 240, 0.72);
+            border: 1px solid rgba(52, 211, 153, 0.18);
+            background: rgba(8, 20, 17, 0.55);
+            color: rgba(238, 252, 245, 0.72);
             transition: all 0.22s ease;
         }
 
         .skill-tab:hover {
-            border-color: rgba(255, 214, 0, 0.42);
-            color: rgba(255, 214, 0, 0.92);
+            border-color: rgba(52, 211, 153, 0.34);
+            color: var(--green-bright);
         }
 
         .skill-tab.active {
-            background: #ffd600;
-            color: #050505;
-            border-color: #ffd600;
-            box-shadow: 0 0 0 1px rgba(255, 214, 0, 0.18);
+            background: rgba(52, 211, 153, 0.14);
+            color: var(--green-bright);
+            border-color: rgba(52, 211, 153, 0.38);
+            box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.10);
         }
 
         .skill-card {
-            min-height: 64px;
-            border: 1px solid rgba(255, 214, 0, 0.22);
-            background: rgba(0, 0, 0, 0.28);
+            min-height: 52px;
+            border: 1px solid rgba(52, 211, 153, 0.16);
+            background: rgba(8, 20, 17, 0.60);
             color: var(--text);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 1rem;
-            font-size: 1.03rem;
-            font-weight: 700;
+            padding: 0.85rem 0.9rem;
+            font-size: 0.92rem;
+            font-weight: 600;
             letter-spacing: -0.01em;
             transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
         }
 
         .skill-card:hover {
             transform: translateY(-2px);
-            border-color: rgba(255, 214, 0, 0.48);
-            background: rgba(255, 214, 0, 0.06);
+            border-color: rgba(52, 211, 153, 0.34);
+            background: rgba(52, 211, 153, 0.06);
         }
 
         .skill-focus-card {
-            border: 1px solid rgba(255, 214, 0, 0.24);
-            background: rgba(0, 0, 0, 0.30);
-            min-height: 210px;
+            border: 1px solid rgba(52, 211, 153, 0.16);
+            background: rgba(8, 20, 17, 0.56);
+            min-height: 140px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 2rem;
+            padding: 1.25rem 1.5rem;
         }
 
         .skill-focus-card p {
@@ -829,7 +832,6 @@
             </button>
             <div class="desktop-nav-links hidden md:flex gap-6 text-sm font-semibold text-emerald-50/65">
                 <span class="nav-link" onclick="showSection('home')">Home</span>
-                <span class="nav-link" onclick="showSkills()">Skills</span>
                 <span class="nav-link" onclick="showSection('projects')">Projects</span>
                 <span class="nav-link" onclick="showSection('experience')">Experience</span>
                 <span class="nav-link" onclick="showSection('resume')">Resume</span>
@@ -838,7 +840,6 @@
         <div id="mobileNavPanel" class="mobile-nav-panel hidden md:hidden px-6 pb-2">
             <div class="flex flex-col text-sm font-semibold text-emerald-50/75">
                 <span class="nav-link mobile-nav-link" onclick="showSection('home')">Home</span>
-                <span class="nav-link mobile-nav-link" onclick="showSkills()">Skills</span>
                 <span class="nav-link mobile-nav-link" onclick="showSection('projects')">Projects</span>
                 <span class="nav-link mobile-nav-link" onclick="showSection('experience')">Experience</span>
                 <span class="nav-link mobile-nav-link" onclick="showSection('resume')">Resume</span>
@@ -851,7 +852,7 @@
 
         <!-- SECTION: HOME -->
         <section id="home" class="content-section">
-            <div class="hero-stage mb-20" id="heroStage">
+            <div class="hero-stage mb-12" id="heroStage">
                 <div class="electric-field" aria-hidden="true">
                     <svg class="electric-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -924,23 +925,23 @@
             </div>
 
             <!-- TECHNICAL EXPERTISE -->
-            <div id="skillsHome" class="skills-showcase panel p-6 md:p-8 rounded-3xl mb-16">
+            <div id="skillsHome" class="skills-showcase mb-10">
                 <div class="skills-glow" aria-hidden="true"></div>
 
                 <div class="relative z-10">
                     <p class="section-label mb-3">Technical Expertise</p>
-                    <h2 class="text-3xl md:text-4xl font-black text-amber-400">Skills &amp; Tools</h2>
+                    <h2 class="text-3xl md:text-4xl font-black text-emerald-50">Skills &amp; Tools</h2>
 
-                    <div class="mt-8 flex flex-wrap gap-3" role="tablist" aria-label="Technical expertise categories">
-                        <button type="button" class="skill-tab active mono px-5 py-3 rounded-tr-none rounded-bl-none rounded-2xl text-xs font-bold tracking-[0.22em] uppercase" data-skill-tab="hardware" onclick="setSkillCategory('hardware')">Hardware</button>
-                        <button type="button" class="skill-tab mono px-5 py-3 rounded-tr-none rounded-bl-none rounded-2xl text-xs font-bold tracking-[0.22em] uppercase" data-skill-tab="programming" onclick="setSkillCategory('programming')">Programming</button>
-                        <button type="button" class="skill-tab mono px-5 py-3 rounded-tr-none rounded-bl-none rounded-2xl text-xs font-bold tracking-[0.22em] uppercase" data-skill-tab="tools" onclick="setSkillCategory('tools')">Tools</button>
-                        <button type="button" class="skill-tab mono px-5 py-3 rounded-tr-none rounded-bl-none rounded-2xl text-xs font-bold tracking-[0.22em] uppercase" data-skill-tab="focus" onclick="setSkillCategory('focus')">Focus Areas</button>
+                    <div class="mt-5 flex flex-wrap gap-3" role="tablist" aria-label="Technical expertise categories">
+                        <button type="button" class="skill-tab active mono px-4 py-2.5 rounded-full text-[11px] font-bold tracking-[0.22em] uppercase" data-skill-tab="hardware" onclick="setSkillCategory('hardware')">Hardware</button>
+                        <button type="button" class="skill-tab mono px-4 py-2.5 rounded-full text-[11px] font-bold tracking-[0.22em] uppercase" data-skill-tab="programming" onclick="setSkillCategory('programming')">Programming</button>
+                        <button type="button" class="skill-tab mono px-4 py-2.5 rounded-full text-[11px] font-bold tracking-[0.22em] uppercase" data-skill-tab="tools" onclick="setSkillCategory('tools')">Tools</button>
+                        <button type="button" class="skill-tab mono px-4 py-2.5 rounded-full text-[11px] font-bold tracking-[0.22em] uppercase" data-skill-tab="focus" onclick="setSkillCategory('focus')">Focus Areas</button>
                     </div>
 
-                    <div class="mt-10">
+                    <div class="mt-7">
                         <div class="skill-panel" data-skill-panel="hardware">
-                            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                                 <div class="skill-card rounded-xl">Arduino / ESP32</div>
                                 <div class="skill-card rounded-xl">Sensors</div>
                                 <div class="skill-card rounded-xl">Breadboards</div>
@@ -952,7 +953,7 @@
                         </div>
 
                         <div class="skill-panel hidden" data-skill-panel="programming">
-                            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                                 <div class="skill-card rounded-xl">Python</div>
                                 <div class="skill-card rounded-xl">C++</div>
                                 <div class="skill-card rounded-xl">MATLAB</div>
@@ -963,7 +964,7 @@
                         </div>
 
                         <div class="skill-panel hidden" data-skill-panel="tools">
-                            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                                 <div class="skill-card rounded-xl">LTspice</div>
                                 <div class="skill-card rounded-xl">LabVIEW</div>
                                 <div class="skill-card rounded-xl">KiCad</div>
@@ -976,14 +977,14 @@
                         <div class="skill-panel hidden" data-skill-panel="focus">
                             <div class="skill-focus-card rounded-2xl">
                                 <div>
-                                    <p class="text-2xl md:text-3xl font-black text-amber-400 leading-tight">On the works, through projects, involvement, and co-ops.</p>
+                                    <p class="text-xl md:text-2xl font-black text-emerald-50 leading-tight">On the works, through projects, involvement, and co-ops.</p>
                                     <p class="mt-4 text-emerald-50/60 text-sm md:text-base leading-relaxed">These focus areas are growing through hands-on work, team involvement, and real-world experience.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <p class="mt-8 text-emerald-50/58 text-sm leading-relaxed">
+                    <p class="mt-6 text-emerald-50/58 text-sm leading-relaxed">
                         Always learning new technologies and improving existing skills.
                     </p>
                 </div>
@@ -1283,14 +1284,6 @@
             document.getElementById(sectionId).classList.remove('hidden');
             closeMobileNav();
             window.scrollTo(0, 0);
-        }
-
-        function showSkills() {
-            showSection('home');
-            const skillsHome = document.getElementById('skillsHome');
-            if (skillsHome) {
-                skillsHome.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
         }
 
         function setSkillCategory(category) {
