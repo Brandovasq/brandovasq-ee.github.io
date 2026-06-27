@@ -112,6 +112,79 @@
             display: none;
         }
 
+        .skills-showcase {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skills-glow {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 18% 18%, rgba(255, 214, 0, 0.20), transparent 22%),
+                radial-gradient(circle at 78% 20%, rgba(255, 214, 0, 0.12), transparent 18%),
+                radial-gradient(circle at 24% 78%, rgba(255, 214, 0, 0.12), transparent 20%);
+            opacity: 0.9;
+        }
+
+        .skill-tab {
+            border: 1px solid rgba(255, 214, 0, 0.24);
+            background: rgba(0, 0, 0, 0.20);
+            color: rgba(226, 232, 240, 0.72);
+            transition: all 0.22s ease;
+        }
+
+        .skill-tab:hover {
+            border-color: rgba(255, 214, 0, 0.42);
+            color: rgba(255, 214, 0, 0.92);
+        }
+
+        .skill-tab.active {
+            background: #ffd600;
+            color: #050505;
+            border-color: #ffd600;
+            box-shadow: 0 0 0 1px rgba(255, 214, 0, 0.18);
+        }
+
+        .skill-card {
+            min-height: 64px;
+            border: 1px solid rgba(255, 214, 0, 0.22);
+            background: rgba(0, 0, 0, 0.28);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.03rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 214, 0, 0.48);
+            background: rgba(255, 214, 0, 0.06);
+        }
+
+        .skill-focus-card {
+            border: 1px solid rgba(255, 214, 0, 0.24);
+            background: rgba(0, 0, 0, 0.30);
+            min-height: 210px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .skill-focus-card p {
+            margin: 0;
+            max-width: 36rem;
+        }
+
         .section-label {
             font-family: 'Share Tech Mono', monospace;
             color: rgba(52, 211, 153, 0.78);
@@ -756,7 +829,7 @@
             </button>
             <div class="desktop-nav-links hidden md:flex gap-6 text-sm font-semibold text-emerald-50/65">
                 <span class="nav-link" onclick="showSection('home')">Home</span>
-                <span class="nav-link" onclick="showSection('skills')">Skills</span>
+                <span class="nav-link" onclick="showSkills()">Skills</span>
                 <span class="nav-link" onclick="showSection('projects')">Projects</span>
                 <span class="nav-link" onclick="showSection('experience')">Experience</span>
                 <span class="nav-link" onclick="showSection('resume')">Resume</span>
@@ -765,7 +838,7 @@
         <div id="mobileNavPanel" class="mobile-nav-panel hidden md:hidden px-6 pb-2">
             <div class="flex flex-col text-sm font-semibold text-emerald-50/75">
                 <span class="nav-link mobile-nav-link" onclick="showSection('home')">Home</span>
-                <span class="nav-link mobile-nav-link" onclick="showSection('skills')">Skills</span>
+                <span class="nav-link mobile-nav-link" onclick="showSkills()">Skills</span>
                 <span class="nav-link mobile-nav-link" onclick="showSection('projects')">Projects</span>
                 <span class="nav-link mobile-nav-link" onclick="showSection('experience')">Experience</span>
                 <span class="nav-link mobile-nav-link" onclick="showSection('resume')">Resume</span>
@@ -850,6 +923,72 @@
                 </div>
             </div>
 
+            <!-- TECHNICAL EXPERTISE -->
+            <div id="skillsHome" class="skills-showcase panel p-6 md:p-8 rounded-3xl mb-16">
+                <div class="skills-glow" aria-hidden="true"></div>
+
+                <div class="relative z-10">
+                    <p class="section-label mb-3">Technical Expertise</p>
+                    <h2 class="text-3xl md:text-4xl font-black text-amber-400">Skills &amp; Tools</h2>
+
+                    <div class="mt-8 flex flex-wrap gap-3" role="tablist" aria-label="Technical expertise categories">
+                        <button type="button" class="skill-tab active mono px-5 py-3 rounded-tr-none rounded-bl-none rounded-2xl text-xs font-bold tracking-[0.22em] uppercase" data-skill-tab="hardware" onclick="setSkillCategory('hardware')">Hardware</button>
+                        <button type="button" class="skill-tab mono px-5 py-3 rounded-tr-none rounded-bl-none rounded-2xl text-xs font-bold tracking-[0.22em] uppercase" data-skill-tab="programming" onclick="setSkillCategory('programming')">Programming</button>
+                        <button type="button" class="skill-tab mono px-5 py-3 rounded-tr-none rounded-bl-none rounded-2xl text-xs font-bold tracking-[0.22em] uppercase" data-skill-tab="tools" onclick="setSkillCategory('tools')">Tools</button>
+                        <button type="button" class="skill-tab mono px-5 py-3 rounded-tr-none rounded-bl-none rounded-2xl text-xs font-bold tracking-[0.22em] uppercase" data-skill-tab="focus" onclick="setSkillCategory('focus')">Focus Areas</button>
+                    </div>
+
+                    <div class="mt-10">
+                        <div class="skill-panel" data-skill-panel="hardware">
+                            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                                <div class="skill-card rounded-xl">Arduino / ESP32</div>
+                                <div class="skill-card rounded-xl">Sensors</div>
+                                <div class="skill-card rounded-xl">Breadboards</div>
+                                <div class="skill-card rounded-xl">Soldering</div>
+                                <div class="skill-card rounded-xl">Circuit Prototyping</div>
+                                <div class="skill-card rounded-xl">Hardware Debugging</div>
+                                <div class="skill-card rounded-xl">PCB Design</div>
+                            </div>
+                        </div>
+
+                        <div class="skill-panel hidden" data-skill-panel="programming">
+                            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                                <div class="skill-card rounded-xl">Python</div>
+                                <div class="skill-card rounded-xl">C++</div>
+                                <div class="skill-card rounded-xl">MATLAB</div>
+                                <div class="skill-card rounded-xl">SQL</div>
+                                <div class="skill-card rounded-xl">HTML / CSS</div>
+                                <div class="skill-card rounded-xl">JavaScript Basics</div>
+                            </div>
+                        </div>
+
+                        <div class="skill-panel hidden" data-skill-panel="tools">
+                            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                                <div class="skill-card rounded-xl">LTspice</div>
+                                <div class="skill-card rounded-xl">LabVIEW</div>
+                                <div class="skill-card rounded-xl">KiCad</div>
+                                <div class="skill-card rounded-xl">Fusion 360</div>
+                                <div class="skill-card rounded-xl">OnShape</div>
+                                <div class="skill-card rounded-xl">Git / GitHub</div>
+                            </div>
+                        </div>
+
+                        <div class="skill-panel hidden" data-skill-panel="focus">
+                            <div class="skill-focus-card rounded-2xl">
+                                <div>
+                                    <p class="text-2xl md:text-3xl font-black text-amber-400 leading-tight">On the works, through projects, involvement, and co-ops.</p>
+                                    <p class="mt-4 text-emerald-50/60 text-sm md:text-base leading-relaxed">These focus areas are growing through hands-on work, team involvement, and real-world experience.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="mt-8 text-emerald-50/58 text-sm leading-relaxed">
+                        Always learning new technologies and improving existing skills.
+                    </p>
+                </div>
+            </div>
+
             <!-- PREVIEW TILES -->
             <div class="grid md:grid-cols-3 gap-6">
                 <div onclick="showSection('projects')" class="group cursor-pointer card p-8 rounded-2xl">
@@ -870,73 +1009,6 @@
                     <p class="text-emerald-50/56 text-sm mb-4">Technical skills in C++, Python, and Hardware design.</p>
                     <span class="accent-text font-bold text-sm italic">Get PDF →</span>
                 </div>
-            </div>
-        </section>
-
-        <!-- SECTION: SKILLS -->
-        <section id="skills" class="content-section">
-            <div class="mb-12">
-                <p class="section-label mb-3">Technical Expertise</p>
-                <h2 class="text-4xl font-black text-emerald-50">Skills & Tools</h2>
-                <p class="text-emerald-50/58 mt-4 max-w-3xl leading-relaxed">
-                    A focused mix of hardware, programming, and design tools I use to move from idea to prototype, with room to keep learning and improving.
-                </p>
-            </div>
-
-            <div class="panel p-6 md:p-8 rounded-3xl space-y-8">
-                <div class="grid gap-6 md:grid-cols-2">
-                    <div class="card p-6 rounded-2xl">
-                        <p class="section-label mb-3">Hardware</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Arduino / ESP32</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Sensors</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Breadboards</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Soldering</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Circuit Prototyping</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Hardware Debugging</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">PCB Design</span>
-                        </div>
-                    </div>
-
-                    <div class="card p-6 rounded-2xl">
-                        <p class="section-label mb-3">Programming</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Python</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">C++</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">MATLAB</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">SQL</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">HTML/CSS</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">JavaScript Basics</span>
-                        </div>
-                    </div>
-
-                    <div class="card p-6 rounded-2xl">
-                        <p class="section-label mb-3">Tools</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">LTspice</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">LabVIEW</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">KiCad</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Fusion 360</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">OnShape</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Git / GitHub</span>
-                        </div>
-                    </div>
-
-                    <div class="card p-6 rounded-2xl">
-                        <p class="section-label mb-3">Focus Areas</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Control Systems</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Robotics</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Automation</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Embedded Systems</span>
-                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Hardware Systems</span>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="text-emerald-50/58 text-sm leading-relaxed">
-                    Always learning new technologies and improving existing skills.
-                </p>
             </div>
         </section>
 
@@ -1211,6 +1283,26 @@
             document.getElementById(sectionId).classList.remove('hidden');
             closeMobileNav();
             window.scrollTo(0, 0);
+        }
+
+        function showSkills() {
+            showSection('home');
+            const skillsHome = document.getElementById('skillsHome');
+            if (skillsHome) {
+                skillsHome.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function setSkillCategory(category) {
+            document.querySelectorAll('[data-skill-tab]').forEach(tab => {
+                const isActive = tab.dataset.skillTab === category;
+                tab.classList.toggle('active', isActive);
+                tab.setAttribute('aria-selected', String(isActive));
+            });
+
+            document.querySelectorAll('[data-skill-panel]').forEach(panel => {
+                panel.classList.toggle('hidden', panel.dataset.skillPanel !== category);
+            });
         }
 
         // Plasma-style interactive waveform field
