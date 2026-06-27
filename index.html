@@ -306,10 +306,281 @@
             text-transform: uppercase;
         }
 
+        /* PLASMA WAVEFORM STYLING */
+        .hero-stage {
+            position: relative;
+            padding: 2.5rem 0;
+        }
+
+        .hero-stage::before {
+            content: none;
+        }
+
+        .hero-panel {
+            position: relative;
+            z-index: 3;
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+        }
+
+        .hero-name {
+            font-size: clamp(3.5rem, 9.1vw, 8rem);
+            line-height: 0.9;
+            letter-spacing: -0.08em;
+            color: var(--text);
+            text-shadow:
+                0 4px 30px rgba(0, 0, 0, 0.60),
+                0 0 26px rgba(52, 211, 153, 0.18);
+        }
+
+        .hero-last-name {
+            color: var(--green-bright);
+            text-shadow:
+                0 4px 30px rgba(0, 0, 0, 0.60),
+                0 0 24px rgba(52, 211, 153, 0.30);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.55rem, 3.5vw, 3.15rem);
+            line-height: 1.02;
+            letter-spacing: -0.045em;
+            color: rgba(238, 252, 245, 0.92);
+        }
+
+        .electric-field {
+            position: fixed;
+            left: calc(50% - 50vw);
+            width: 100vw;
+            top: 95px;
+            height: 430px;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 1;
+            overflow: visible;
+            mix-blend-mode: screen;
+        }
+
+        .electric-field::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 18%;
+            height: 58%;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.30), transparent 72%);
+            opacity: 0.9;
+        }
+
+        .electric-svg {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .electric-path {
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            vector-effect: non-scaling-stroke;
+            stroke-dasharray: none;
+            animation: none;
+        }
+
+        .electric-path.glow-wide {
+            stroke: rgba(0, 255, 92, 0.34);
+            stroke-width: 34;
+            filter: url(#waveGlowStrong);
+        }
+
+        .electric-path.glow-mid {
+            stroke: rgba(0, 255, 102, 0.62);
+            stroke-width: 15;
+            filter: url(#waveGlowSoft);
+        }
+
+        .electric-path.core {
+            stroke: rgba(238, 255, 239, 1);
+            stroke-width: 4.2;
+            filter: drop-shadow(0 0 12px rgba(0, 255, 102, 1));
+        }
+
+        .electric-path.trace {
+            stroke: rgba(110, 231, 183, 0.78);
+            stroke-width: 2.1;
+            filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.64));
+        }
+
+        .electric-path.faint {
+            stroke: rgba(52, 211, 153, 0.42);
+            stroke-width: 1.55;
+        }
+
+        .electric-orb {
+            position: fixed;
+            width: 260px;
+            height: 260px;
+            border-radius: 999px;
+            left: var(--cursor-x, 50vw);
+            top: var(--cursor-y, 50vh);
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.16), rgba(96, 165, 250, 0.055) 38%, transparent 72%);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .hero-stage:hover .electric-orb {
+            opacity: 0;
+        }
+
+        .project-preview {
+            position: relative;
+            height: 190px;
+            margin: -0.75rem -0.75rem 1.5rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid rgba(52, 211, 153, 0.14);
+            background:
+                linear-gradient(135deg, rgba(52, 211, 153, 0.08), rgba(96, 165, 250, 0.04)),
+                rgba(0, 0, 0, 0.20);
+            cursor: pointer;
+        }
+
+        .project-preview::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background:
+                linear-gradient(to top, rgba(3, 7, 5, 0.70), transparent 55%),
+                linear-gradient(120deg, transparent, rgba(52, 211, 153, 0.08), transparent);
+            opacity: 0.88;
+            transition: opacity 0.25s ease;
+        }
+
+        .project-preview::after {
+            content: "View";
+            position: absolute;
+            left: 1rem;
+            bottom: 0.9rem;
+            z-index: 4;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(238, 252, 245, 0.75);
+            border: 1px solid rgba(52, 211, 153, 0.22);
+            background: rgba(3, 7, 5, 0.48);
+            padding: 0.38rem 0.62rem;
+            border-radius: 999px;
+            backdrop-filter: blur(8px);
+        }
+
+        .preview-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.55s ease, opacity 0.3s ease, filter 0.3s ease;
+            filter: saturate(0.88) contrast(1.02) brightness(0.82);
+        }
+
+        .card:hover .preview-img {
+            transform: scale(1.08);
+            filter: saturate(1.05) contrast(1.04) brightness(0.92);
+        }
+
+        .preview-stack .preview-img.main-preview {
+            position: absolute;
+            inset: 0;
+        }
+
+        .preview-stack .preview-img.thumb {
+            position: absolute;
+            z-index: 3;
+            width: 92px;
+            height: 68px;
+            right: 1rem;
+            border: 1px solid rgba(238, 252, 245, 0.18);
+            border-radius: 0.8rem;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.32);
+        }
+
+        .preview-stack .preview-img.thumb.one {
+            bottom: 1rem;
+            transform: rotate(4deg);
+        }
+
+        .preview-stack .preview-img.thumb.two {
+            bottom: 4.25rem;
+            transform: rotate(-5deg);
+        }
+
+        .card:hover .preview-stack .preview-img.thumb.one {
+            transform: translateY(-5px) rotate(7deg);
+        }
+
+        .card:hover .preview-stack .preview-img.thumb.two {
+            transform: translateY(-7px) rotate(-8deg);
+        }
+
+        .preview-count {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            z-index: 4;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(238, 252, 245, 0.72);
+            border: 1px solid rgba(52, 211, 153, 0.22);
+            background: rgba(3, 7, 5, 0.50);
+            padding: 0.38rem 0.62rem;
+            border-radius: 999px;
+            backdrop-filter: blur(8px);
+        }
+
         @media (max-width: 1024px) {
             .edge-wire,
             .top-corner-trace {
                 display: none;
+            }
+
+            .hero-stage {
+                padding: 1.5rem 0;
+            }
+
+            .electric-field {
+                position: fixed;
+                left: calc(50% - 50vw);
+                width: 100vw;
+                top: 118px;
+                height: 390px;
+                z-index: 1;
+                pointer-events: none;
+                opacity: 0.98;
+                overflow: visible;
+                mix-blend-mode: screen;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-name {
+                font-size: clamp(3.8rem, 10vw, 8.8rem);
+                line-height: 0.88;
+                letter-spacing: -0.08em;
+                color: var(--text);
+                text-shadow:
+                    0 4px 30px rgba(0, 0, 0, 0.60),
+                    0 0 26px rgba(52, 211, 153, 0.18);
+            }
+
+            #modalImage {
+                max-height: 85vh;
+                width: auto;
+                object-fit: contain;
             }
         }
 
@@ -341,56 +612,94 @@
     <!-- ELECTRICAL ENGINEERING EDGE DECOR -->
     <div class="page-decor" aria-hidden="true">
 
+        <!-- Left edge wiring -->
         <div class="edge-wire left">
-            <svg viewBox="0 0 120 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M40 30 V130 H78 V210 H42 V315 H88 V420 H50 V520 H74 V650 H36 V780 H82 V910" stroke="rgba(52, 211, 153, 0.42)" stroke-width="3" stroke-linecap="round"/>
-                <path d="M64 130 H100" stroke="rgba(96, 165, 250, 0.38)" stroke-width="3" stroke-linecap="round"/>
-                <path d="M42 315 H92" stroke="rgba(251, 191, 36, 0.34)" stroke-width="3" stroke-linecap="round"/>
-                <path d="M50 520 H102" stroke="rgba(96, 165, 250, 0.30)" stroke-width="3" stroke-linecap="round"/>
-                <path d="M36 780 H94" stroke="rgba(52, 211, 153, 0.34)" stroke-width="3" stroke-linecap="round"/>
+            <svg viewBox="0 0 172 860" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Clean PCB-style copper traces -->
+                <path d="M36 62 V238 Q36 254 52 254 H76 Q90 254 90 268 V394 Q90 408 76 408 H58 Q44 408 44 422 V620 Q44 636 60 636 H112" stroke="#FFAC4D" stroke-width="3.2"/>
+                <path d="M58 72 V184 Q58 198 72 198 H96 Q110 198 110 212 V742" stroke="#FFC06D" stroke-width="3"/>
+                <path d="M82 58 V146 Q82 160 96 160 H132" stroke="#E99A45" stroke-width="2.8"/>
+                <path d="M132 94 V292 Q132 306 118 306 H102 Q88 306 88 320 V742" stroke="#FFB35C" stroke-width="3"/>
+                <path d="M26 312 H60 Q74 312 74 326 V490 Q74 504 88 504 H118 Q132 504 132 518 V694" stroke="#E08A35" stroke-width="2.8"/>
+                <path d="M116 72 V226 Q116 240 130 240 H146" stroke="#FFD083" stroke-width="2.8"/>
+                <path d="M28 704 H72 Q86 704 86 690 V574 Q86 560 100 560 H140" stroke="#F2A144" stroke-width="3"/>
+                <path d="M52 780 H118 Q132 780 132 766 V736" stroke="#FFC06D" stroke-width="2.8"/>
+
+                <!-- Copper pad rings -->
+                <circle cx="36" cy="62" r="8" fill="rgba(6,16,13,0.65)" stroke="#FFC06D" stroke-width="3"/>
+                <circle cx="58" cy="72" r="7" fill="rgba(6,16,13,0.65)" stroke="#FFD083" stroke-width="3"/>
+                <circle cx="82" cy="58" r="6" fill="rgba(6,16,13,0.65)" stroke="#E99A45" stroke-width="2.6"/>
+                <circle cx="132" cy="94" r="7" fill="rgba(6,16,13,0.65)" stroke="#FFB35C" stroke-width="3"/>
+                <circle cx="146" cy="240" r="6" fill="rgba(6,16,13,0.65)" stroke="#FFD083" stroke-width="2.6"/>
+                <circle cx="26" cy="312" r="7" fill="rgba(6,16,13,0.65)" stroke="#E08A35" stroke-width="3"/>
+                <circle cx="132" cy="694" r="7" fill="rgba(6,16,13,0.65)" stroke="#E08A35" stroke-width="3"/>
+                <circle cx="112" cy="636" r="7" fill="rgba(6,16,13,0.65)" stroke="#FFAC4D" stroke-width="3"/>
+                <circle cx="140" cy="560" r="6" fill="rgba(6,16,13,0.65)" stroke="#F2A144" stroke-width="2.7"/>
+                <circle cx="52" cy="780" r="8" fill="rgba(6,16,13,0.65)" stroke="#FFC06D" stroke-width="3"/>
             </svg>
 
-            <span class="wire-node green" style="left:35px; top:28px;"></span>
-            <span class="wire-node blue" style="left:74px; top:124px;"></span>
-            <span class="wire-node amber" style="left:38px; top:309px;"></span>
-            <span class="wire-node blue" style="left:46px; top:514px;"></span>
-            <span class="wire-node green" style="left:32px; top:774px;"></span>
+            <span class="wire-node green" style="left:30px; top:56px;"></span>
+            <span class="wire-node blue" style="left:126px; top:88px;"></span>
+            <span class="wire-node amber" style="left:140px; top:234px;"></span>
+            <span class="wire-node blue" style="left:106px; top:630px;"></span>
+            <span class="wire-node green" style="left:46px; top:774px;"></span>
         </div>
 
+        <!-- Right edge wiring -->
         <div class="edge-wire right">
-            <svg viewBox="0 0 120 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M82 40 V150 H42 V250 H78 V370 H32 V500 H72 V620 H44 V760 H84 V900" stroke="rgba(52, 211, 153, 0.40)" stroke-width="3" stroke-linecap="round"/>
-                <path d="M42 150 H8" stroke="rgba(96, 165, 250, 0.36)" stroke-width="3" stroke-linecap="round"/>
-                <path d="M78 370 H18" stroke="rgba(251, 191, 36, 0.32)" stroke-width="3" stroke-linecap="round"/>
-                <path d="M72 620 H14" stroke="rgba(96, 165, 250, 0.28)" stroke-width="3" stroke-linecap="round"/>
-                <path d="M84 900 H22" stroke="rgba(52, 211, 153, 0.34)" stroke-width="3" stroke-linecap="round"/>
+            <svg viewBox="0 0 172 860" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Clean mirrored PCB-style copper traces -->
+                <path d="M136 62 V238 Q136 254 120 254 H96 Q82 254 82 268 V394 Q82 408 96 408 H114 Q128 408 128 422 V620 Q128 636 112 636 H60" stroke="#FFAC4D" stroke-width="3.2"/>
+                <path d="M114 72 V184 Q114 198 100 198 H76 Q62 198 62 212 V742" stroke="#FFC06D" stroke-width="3"/>
+                <path d="M90 58 V146 Q90 160 76 160 H40" stroke="#E99A45" stroke-width="2.8"/>
+                <path d="M40 94 V292 Q40 306 54 306 H70 Q84 306 84 320 V742" stroke="#FFB35C" stroke-width="3"/>
+                <path d="M146 312 H112 Q98 312 98 326 V490 Q98 504 84 504 H54 Q40 504 40 518 V694" stroke="#E08A35" stroke-width="2.8"/>
+                <path d="M56 72 V226 Q56 240 42 240 H26" stroke="#FFD083" stroke-width="2.8"/>
+                <path d="M144 704 H100 Q86 704 86 690 V574 Q86 560 72 560 H32" stroke="#F2A144" stroke-width="3"/>
+                <path d="M120 780 H54 Q40 780 40 766 V736" stroke="#FFC06D" stroke-width="2.8"/>
+
+                <!-- Copper pad rings -->
+                <circle cx="136" cy="62" r="8" fill="rgba(6,16,13,0.65)" stroke="#FFC06D" stroke-width="3"/>
+                <circle cx="114" cy="72" r="7" fill="rgba(6,16,13,0.65)" stroke="#FFD083" stroke-width="3"/>
+                <circle cx="90" cy="58" r="6" fill="rgba(6,16,13,0.65)" stroke="#E99A45" stroke-width="2.6"/>
+                <circle cx="40" cy="94" r="7" fill="rgba(6,16,13,0.65)" stroke="#FFB35C" stroke-width="3"/>
+                <circle cx="26" cy="240" r="6" fill="rgba(6,16,13,0.65)" stroke="#FFD083" stroke-width="2.6"/>
+                <circle cx="146" cy="312" r="7" fill="rgba(6,16,13,0.65)" stroke="#E08A35" stroke-width="3"/>
+                <circle cx="40" cy="694" r="7" fill="rgba(6,16,13,0.65)" stroke="#E08A35" stroke-width="3"/>
+                <circle cx="60" cy="636" r="7" fill="rgba(6,16,13,0.65)" stroke="#FFAC4D" stroke-width="3"/>
+                <circle cx="32" cy="560" r="6" fill="rgba(6,16,13,0.65)" stroke="#F2A144" stroke-width="2.7"/>
+                <circle cx="120" cy="780" r="8" fill="rgba(6,16,13,0.65)" stroke="#FFC06D" stroke-width="3"/>
             </svg>
 
-            <span class="wire-node green" style="right:33px; top:38px;"></span>
-            <span class="wire-node blue" style="right:73px; top:144px;"></span>
-            <span class="wire-node amber" style="right:70px; top:364px;"></span>
-            <span class="wire-node blue" style="right:64px; top:614px;"></span>
-            <span class="wire-node green" style="right:76px; top:894px;"></span>
+            <span class="wire-node green" style="right:30px; top:56px;"></span>
+            <span class="wire-node blue" style="right:126px; top:88px;"></span>
+            <span class="wire-node amber" style="right:140px; top:234px;"></span>
+            <span class="wire-node blue" style="right:106px; top:630px;"></span>
+            <span class="wire-node green" style="right:46px; top:774px;"></span>
         </div>
 
+        <!-- Top corner traces -->
         <div class="top-corner-trace left">
-            <svg viewBox="0 0 150 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 20 H70 V42 H136" stroke="rgba(52, 211, 153, 0.30)" stroke-width="3" stroke-linecap="round"/>
-                <circle cx="10" cy="20" r="4" fill="#34d399"/>
-                <circle cx="70" cy="42" r="4" fill="#60a5fa"/>
-                <circle cx="136" cy="42" r="4" fill="#34d399"/>
+            <svg viewBox="0 0 178 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 18 H74 V44 H166" stroke="#D89B52" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 34 H58 V64 H122" stroke="#C88A3D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M74 18 V28" stroke="#E2AB66" stroke-width="2.8" stroke-linecap="round"/>
+                <circle cx="12" cy="18" r="4" fill="#34d399"/>
+                <circle cx="74" cy="44" r="4" fill="#60a5fa"/>
+                <circle cx="166" cy="44" r="4" fill="#34d399"/>
             </svg>
         </div>
 
         <div class="top-corner-trace right">
-            <svg viewBox="0 0 150 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 20 H70 V42 H136" stroke="rgba(52, 211, 153, 0.30)" stroke-width="3" stroke-linecap="round"/>
-                <circle cx="10" cy="20" r="4" fill="#34d399"/>
-                <circle cx="70" cy="42" r="4" fill="#60a5fa"/>
-                <circle cx="136" cy="42" r="4" fill="#34d399"/>
+            <svg viewBox="0 0 178 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 18 H74 V44 H166" stroke="#D89B52" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 34 H58 V64 H122" stroke="#C88A3D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M74 18 V28" stroke="#E2AB66" stroke-width="2.8" stroke-linecap="round"/>
+                <circle cx="12" cy="18" r="4" fill="#34d399"/>
+                <circle cx="74" cy="44" r="4" fill="#60a5fa"/>
+                <circle cx="166" cy="44" r="4" fill="#34d399"/>
             </svg>
         </div>
-
     </div>
 
     <!-- NAVIGATION BAR -->
@@ -407,37 +716,79 @@
     </nav>
 
     <!-- MAIN CONTENT -->
-    <main class="max-w-5xl mx-auto px-6 pt-32 pb-20 min-h-screen">
+    <main class="max-w-5xl mx-auto px-6 pt-28 pb-20 min-h-screen">
 
         <!-- SECTION: HOME -->
         <section id="home" class="content-section">
-            <div class="max-w-3xl mb-20 hero-panel rounded-3xl py-8 md:py-10">
-                <p class="section-label mb-6">Electrical Engineering Portfolio</p>
+            <div class="hero-stage mb-20" id="heroStage">
+                <div class="electric-field" aria-hidden="true">
+                    <svg class="electric-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <filter id="waveGlowStrong" x="-20%" y="-120%" width="140%" height="340%">
+                                <feGaussianBlur stdDeviation="14" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
 
-                <h1 class="text-5xl md:text-6xl font-black tracking-tight mb-8 text-emerald-50 leading-tight subtle-glow">
-                    Electrical Engineering <br><span class="accent-text">& control-focused.</span>
-                </h1>
-                <p class="text-xl text-emerald-50/68 leading-relaxed mb-10">
-                    <span class="font-bold text-emerald-50">Brando Vasquez Rodriguez</span> — Third-year Electrical Engineering student at the University of Cincinnati with interests in automation, robotics, hardware systems, and control systems. I build data-driven and embedded solutions that bridge real-world sensing, control, and intelligent decision-making.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="mailto:vasqueby@mail.uc.edu" class="link-chip flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                        Email Me
-                    </a>
-                    <a href="https://github.com/Brandovasq" target="_blank" class="link-chip flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full">
-                        GitHub
-                    </a>
-                    <a href="https://www.linkedin.com/in/brando-vasquezr" target="_blank" class="link-chip flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full">
-                        LinkedIn
-                    </a>
+                            <filter id="waveGlowSoft" x="-20%" y="-120%" width="140%" height="340%">
+                                <feGaussianBlur stdDeviation="7" result="softBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="softBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <!-- Main plasma waveform layers. Static d values make it visible immediately. -->
+                        <path class="electric-path glow-wide" data-base="285" data-amp="58" data-freq="0.020" data-phase="0.0" data-speed="0.0014" d="M -60 285 C 40 260 70 345 115 285 C 165 220 190 150 225 285 C 255 390 300 330 335 285 C 385 215 420 190 455 285 C 490 380 525 435 560 285 C 590 165 625 210 660 285 C 705 370 735 320 770 285 C 825 225 880 260 930 285 C 975 310 1015 285 1060 285"/>
+                        <path class="electric-path glow-mid" data-base="285" data-amp="58" data-freq="0.020" data-phase="0.0" data-speed="0.0014" d="M -60 285 C 40 260 70 345 115 285 C 165 220 190 150 225 285 C 255 390 300 330 335 285 C 385 215 420 190 455 285 C 490 380 525 435 560 285 C 590 165 625 210 660 285 C 705 370 735 320 770 285 C 825 225 880 260 930 285 C 975 310 1015 285 1060 285"/>
+                        <path class="electric-path core" data-base="285" data-amp="58" data-freq="0.020" data-phase="0.0" data-speed="0.0014" d="M -60 285 C 40 260 70 345 115 285 C 165 220 190 150 225 285 C 255 390 300 330 335 285 C 385 215 420 190 455 285 C 490 380 525 435 560 285 C 590 165 625 210 660 285 C 705 370 735 320 770 285 C 825 225 880 260 930 285 C 975 310 1015 285 1060 285"/>
+
+                        <!-- Smaller nearby signal traces -->
+                        <path class="electric-path trace" data-base="252" data-amp="38" data-freq="0.023" data-phase="1.7" data-speed="0.0011" d="M -60 252 C 50 292 120 208 205 252 C 275 290 330 215 405 252 C 485 295 560 205 640 252 C 720 300 815 215 900 252 C 970 285 1010 252 1060 252"/>
+                        <path class="electric-path trace" data-base="330" data-amp="42" data-freq="0.018" data-phase="3.2" data-speed="0.0010" d="M -60 330 C 40 365 120 295 195 330 C 280 370 355 285 425 330 C 505 380 590 280 670 330 C 755 375 850 300 930 330 C 990 350 1030 330 1060 330"/>
+                        <path class="electric-path faint" data-base="215" data-amp="26" data-freq="0.025" data-phase="4.4" data-speed="0.0013" d="M -60 215 C 60 235 120 190 210 215 C 300 245 390 185 480 215 C 570 245 660 190 750 215 C 850 240 960 195 1060 215"/>
+                        <path class="electric-path faint" data-base="375" data-amp="28" data-freq="0.021" data-phase="2.4" data-speed="0.0012" d="M -60 375 C 60 400 125 350 220 375 C 315 405 405 345 500 375 C 600 410 690 350 790 375 C 885 405 970 360 1060 375"/>
+                    </svg>
+                    <div class="electric-orb"></div>
                 </div>
 
-                <div class="hero-tech-badges">
-                    <span class="tech-badge">Embedded Systems</span>
-                    <span class="tech-badge">Control</span>
-                    <span class="tech-badge">Robotics</span>
-                    <span class="tech-badge">Sensors</span>
+                <div class="max-w-4xl hero-panel rounded-3xl py-8 md:py-12">
+                    <p class="section-label mb-6">Electrical Engineering Portfolio</p>
+
+                    <h1 class="hero-name font-black mb-8">
+                        Brando<br><span class="hero-last-name">Vasquez</span><br><span class="hero-last-name">Rodriguez</span>
+                    </h1>
+
+                    <h2 class="hero-subtitle font-black mb-7">
+                        Electrical Engineering Student <span class="accent-text">& Control-Focused</span> <span class="text-emerald-50/55">| UC Class of '29</span>
+                    </h2>
+
+                    <p class="text-xl text-emerald-50/68 leading-relaxed mb-10 max-w-3xl">
+                        Third-year Electrical Engineering student at the University of Cincinnati with interests in automation, robotics, hardware systems, and control systems. I build data-driven and embedded solutions that bridge real-world sensing, control, and intelligent decision-making.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4">
+                        <a href="mailto:vasqueby@mail.uc.edu" class="link-chip flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            Email Me
+                        </a>
+                        <a href="https://github.com/Brandovasq" target="_blank" class="link-chip flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full">
+                            GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/brando-vasquezr" target="_blank" class="link-chip flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full">
+                            LinkedIn
+                        </a>
+                    </div>
+
+                    <div class="hero-tech-badges">
+                        <span class="tech-badge">Embedded Systems</span>
+                        <span class="tech-badge">Control</span>
+                        <span class="tech-badge">Robotics</span>
+                        <span class="tech-badge">Sensors</span>
+                    </div>
                 </div>
             </div>
 
@@ -471,9 +822,15 @@
                 <h2 class="text-4xl font-black text-emerald-50">Featured Work</h2>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
-                
+
                 <!-- Project 1 -->
                 <div class="card p-8 rounded-2xl flex flex-col">
+                    <div class="project-preview preview-stack" onclick="openGallery(['images/LightAlarm/finished_alarm_angled.jpeg','images/LightAlarm/display_modes_stacked.png','images/LightAlarm/breadboard_prototype_lcd_active.jpeg','images/LightAlarm/wired_prototype_perfboard.jpeg','images/LightAlarm/internal_assembly.jpeg','images/LightAlarm/enclosure_render.png','images/LightAlarm/enclosure_technical_drawing.png','images/LightAlarm/circuit_schematic.png'])">
+                        <img class="preview-img main-preview" src="images/LightAlarm/finished_alarm_angled.jpeg" alt="Light-responsive alarm prototype">
+                        <img class="preview-img thumb one" src="images/LightAlarm/display_modes_stacked.png" alt="Display modes">
+                        <img class="preview-img thumb two" src="images/LightAlarm/breadboard_prototype_lcd_active.jpeg" alt="Breadboard prototype">
+                    </div>
+                    
                     <p class="section-label mb-4">Embedded Systems</p>
                     <h3 class="text-xl font-bold mb-3 text-emerald-50">Light-Responsive Alarm System</h3>
                     <p class="text-emerald-50/60 text-[15px] mb-6 leading-relaxed">
@@ -482,8 +839,6 @@
                     <div class="flex flex-wrap gap-2 mb-6">
                         <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">ESP32</span>
                         <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Arduino C++</span>
-                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">I2C / RTC</span>
-                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">ADC Sensing</span>
                         <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Fusion 360</span>
                         <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">KiCad</span>
                     </div>
@@ -495,26 +850,49 @@
 
                 <!-- Project 2 -->
                 <div class="card p-8 rounded-2xl flex flex-col">
+                    <div class="project-preview preview-stack" onclick="openGallery(['images/SelfParkingRob/1mainview.png','images/SelfParkingRob/2sideview.jpg','images/SelfParkingRob/3topview.jpg','images/SelfParkingRob/4backview.jpg','images/SelfParkingRob/5RobotParking.jpeg','images/SelfParkingRob/6dimensions.jpeg','images/SelfParkingRob/7testMuleCode.png'])">
+                        <img class="preview-img main-preview" src="images/SelfParkingRob/1mainview.png" alt="Autonomous parking robot main view">
+                        <img class="preview-img thumb one" src="images/SelfParkingRob/5RobotParking.jpeg" alt="Robot parking test">
+                        <img class="preview-img thumb two" src="images/SelfParkingRob/7testMuleCode.png" alt="Robot LabVIEW test mule code">
+                    </div>
+
                     <p class="section-label mb-4">Robotics</p>
                     <h3 class="text-xl font-bold mb-3 text-emerald-50">Autonomous Parking Robot</h3>
                     <p class="text-emerald-50/60 text-[15px] mb-6 leading-relaxed">
                         Developed a multi-sensor autonomous robot using LEGO EV3 and LabVIEW. Integrated ultrasonic, gyro, and color sensors for precise maneuvers.
                     </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">LabVIEW</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Sensor Integrating</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Robotics</span>
+                    </div>
                     <div class="flex flex-wrap gap-3 mt-auto">
                         <button onclick="openGallery(['images/SelfParkingRob/1mainview.png','images/SelfParkingRob/2sideview.jpg','images/SelfParkingRob/3topview.jpg','images/SelfParkingRob/4backview.jpg','images/SelfParkingRob/5RobotParking.jpeg','images/SelfParkingRob/6dimensions.jpeg','images/SelfParkingRob/7testMuleCode.png'])" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">View Gallery (7)</button>
                         <a href="https://github.com/Brandovasq" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-center">Source Code</a>
                     </div>
                 </div>
 
-                <!-- Project 3: MULTIPLE IMAGES -->
+                <!-- Project 3 -->
                 <div class="card p-8 rounded-2xl flex flex-col">
+                    <div class="project-preview preview-stack" onclick="openGallery(['images/MatlabCalcPlot/MatrixCalcGraphPlot.png', 'images/MatlabCalcPlot/MatrixCalcGraphPlot2.png', 'images/MatlabCalcPlot/MatrixCalcGraphPlot3.png'])">
+                        <img class="preview-img main-preview" src="images/MatlabCalcPlot/MatrixCalcGraphPlot.png" alt="MATLAB matrix and graphing tool interface">
+                        <img class="preview-img thumb one" src="images/MatlabCalcPlot/MatrixCalcGraphPlot2.png" alt="MATLAB graphing tool second preview">
+                        <img class="preview-img thumb two" src="images/MatlabCalcPlot/MatrixCalcGraphPlot3.png" alt="MATLAB graphing tool third preview">
+                    </div>
+
                     <p class="section-label mb-4">MATLAB / GUI</p>
                     <h3 class="text-xl font-bold mb-3 text-emerald-50">MATLAB Matrix & Graphing Tool</h3>
                     <p class="text-emerald-50/60 text-[15px] mb-6 leading-relaxed max-w-3xl">
                         Led development of a MATLAB GUI application for matrix operations and function visualization using App Designer. Built core numerical algorithms and dynamic plotting features.
                     </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">MATLAB</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Linear Algebra</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">GUI</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Front-End</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Back-End</span>
+                    </div>
                     <div class="flex flex-wrap gap-3 mt-auto">
-                        <!-- Add your 3 image paths in the brackets below -->
                         <button onclick="openGallery(['images/MatlabCalcPlot/MatrixCalcGraphPlot.png', 'images/MatlabCalcPlot/MatrixCalcGraphPlot2.png', 'images/MatlabCalcPlot/MatrixCalcGraphPlot3.png'])" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">View Gallery (3)</button>
                         <a href="https://github.com/Brandovasq" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Source Code</a>
                     </div>
@@ -527,6 +905,12 @@
                 <h3 class="text-3xl font-black text-emerald-50 mb-8">Extras</h3>
                 <div class="grid md:grid-cols-1 gap-8">
                     <div class="card p-8 rounded-2xl flex flex-col">
+                        <div class="project-preview preview-stack" onclick="openGallery(['images/Soldering/1heart.jpeg', 'images/Soldering/FailedAttempt.jpeg', 'images/Soldering/finalheart.jpeg', 'images/Soldering/midwayheart.jpeg', 'images/Soldering/solderingstation.jpeg', 'images/Soldering/SpiderBot.jpeg'])">
+                            <img class="preview-img main-preview" src="images/Soldering/SpiderBot.jpeg" alt="Soldered SpiderBot">
+                            <img class="preview-img thumb one" src="images/Soldering/finalheart.jpeg" alt="Final heart LED soldering project">
+                            <img class="preview-img thumb two" src="images/Soldering/solderingstation.jpeg" alt="Soldering station">
+                        </div>
+
                         <p class="section-label mb-4">Hardware / Makerspace</p>
                         <h4 class="text-xl font-bold mb-3 text-emerald-50">Independent Soldering Practice</h4>
                         <p class="text-emerald-50/60 text-[15px] mb-6 leading-relaxed max-w-3xl">
@@ -679,6 +1063,131 @@
             window.scrollTo(0, 0);
         }
 
+        // Plasma-style interactive waveform field
+        const heroStage = document.getElementById('heroStage');
+        const electricField = document.querySelector('.electric-field');
+        const electricPaths = document.querySelectorAll('.electric-path');
+
+        const cursor = {
+            x: 500,
+            y: 285,
+            active: false
+        };
+
+        function gaussian(value, center, width) {
+            const n = (value - center) / width;
+            return Math.exp(-0.5 * n * n);
+        }
+
+        function buildWavePath(path, time) {
+            const baseY = Number(path.dataset.base);
+            const amp = Number(path.dataset.amp);
+            const freq = Number(path.dataset.freq);
+            const phase = Number(path.dataset.phase);
+            const speed = Number(path.dataset.speed);
+
+            const points = [];
+            const step = 14;
+
+            for (let x = -60; x <= 1060; x += step) {
+                let y =
+                    baseY +
+                    Math.sin((x * freq) + (time * speed) + phase) * amp +
+                    Math.sin((x * freq * 2.4) - (time * speed * 1.8) + phase) * amp * 0.28 +
+                    Math.sin((x * 0.055) + (time * 0.0021) + phase) * amp * 0.13;
+
+                // Intentional waveform spikes so it feels more like electricity/plasma
+                y += gaussian(x, 220, 26) * -105;
+                y += gaussian(x, 285, 18) * 92;
+                y += gaussian(x, 390, 34) * -78;
+                y += gaussian(x, 520, 22) * 118;
+                y += gaussian(x, 655, 30) * -88;
+                y += gaussian(x, 760, 44) * 62;
+
+                // Mouse disturbance
+                if (cursor.active) {
+                    const dx = x - cursor.x;
+                    const dy = baseY - cursor.y;
+                    const influence = gaussian(dx, 0, 150) * Math.max(0, 1 - Math.abs(dy) / 260);
+                    const flicker =
+                        Math.sin((x * 0.15) + (time * 0.012) + phase) * 32 * influence +
+                        Math.sin((x * 0.31) - (time * 0.018)) * 18 * influence;
+
+                    y += (dy * 0.24 * influence) + flicker;
+                }
+
+                points.push([x, y]);
+            }
+
+            let d = `M ${points[0][0]} ${points[0][1]}`;
+
+            for (let i = 1; i < points.length - 1; i++) {
+                const [x1, y1] = points[i];
+                const [x2, y2] = points[i + 1];
+                const midX = (x1 + x2) / 2;
+                const midY = (y1 + y2) / 2;
+                d += ` Q ${x1} ${y1}, ${midX} ${midY}`;
+            }
+
+            return d;
+        }
+
+        function animateElectricField(time) {
+            electricPaths.forEach(path => {
+                path.setAttribute('d', buildWavePath(path, time));
+            });
+
+            requestAnimationFrame(animateElectricField);
+        }
+
+        function disturbElectricField(event) {
+            if (!heroStage || heroStage.closest('.content-section').classList.contains('hidden')) return;
+
+            cursor.x = (event.clientX / window.innerWidth) * 1000;
+            const fieldRect = document.querySelector('.electric-field').getBoundingClientRect();
+            cursor.y = ((event.clientY - fieldRect.top) / fieldRect.height) * 1000;
+            cursor.active = true;
+
+            document.body.style.setProperty('--cursor-x', `${event.clientX}px`);
+            document.body.style.setProperty('--cursor-y', `${event.clientY}px`);
+        }
+
+        function handleElectricFieldScroll() {
+            if (!heroStage || heroStage.closest('.content-section').classList.contains('hidden')) {
+                electricField.style.position = 'fixed';
+                electricField.style.top = '95px';
+                electricField.style.opacity = '0';
+                return;
+            }
+
+            // Find the hero subtitle element to use as stopping point
+            const heroSubtitle = heroStage.querySelector('.hero-subtitle');
+            const subtitleRect = heroSubtitle.getBoundingClientRect();
+            const subtitleBottom = subtitleRect.bottom;
+
+            // When subtitle scrolls out of view, lock the field in place
+            if (subtitleBottom <= 100) {
+                // Subtitle has scrolled past, lock field in place
+                electricField.style.position = 'absolute';
+                const stopPosition = heroSubtitle.offsetTop + heroSubtitle.offsetHeight + 100;
+                electricField.style.top = stopPosition + 'px';
+                electricField.style.opacity = '0.2';
+            } else {
+                // Subtitle is still visible, field follows scroll
+                electricField.style.position = 'fixed';
+                electricField.style.top = '95px';
+                electricField.style.opacity = '1';
+            }
+        }
+
+        window.addEventListener('mousemove', disturbElectricField);
+        window.addEventListener('mouseleave', () => {
+            cursor.active = false;
+        });
+        window.addEventListener('scroll', handleElectricFieldScroll);
+
+        requestAnimationFrame(animateElectricField);
+
         // Gallery Logic
         let currentImages = [];
         let currentIndex = 0;
@@ -698,7 +1207,7 @@
             const nextBtn = document.getElementById('nextBtn');
 
             imgTag.src = currentImages[currentIndex];
-            
+
             if (currentImages.length > 1) {
                 prevBtn.classList.remove('hidden');
                 nextBtn.classList.remove('hidden');
@@ -722,8 +1231,8 @@
             document.body.style.overflow = 'auto';
         }
 
-        document.addEventListener('keydown', (e) => { 
-            if (e.key === "Escape") closeModal(); 
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeModal();
             if (e.key === "ArrowRight") changeImage(1);
             if (e.key === "ArrowLeft") changeImage(-1);
         });
