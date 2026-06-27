@@ -103,6 +103,11 @@
             display: none;
         }
 
+        .mobile-nav-toggle svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
         .mobile-nav-panel {
             display: none;
         }
@@ -742,11 +747,16 @@
     <nav class="fixed top-0 w-full glass-nav z-40">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="font-black text-xl cursor-pointer brand" onclick="showSection('home')">BRANDOVASQ<span class="accent-text">.</span></div>
-            <button type="button" class="mobile-nav-toggle md:hidden text-emerald-50/75 border border-emerald-400/20 rounded-full px-3 py-2 text-xs font-bold tracking-[0.22em] uppercase" onclick="toggleMobileNav()" aria-controls="mobileNavPanel" aria-expanded="false">
-                Menu
+            <button type="button" class="mobile-nav-toggle md:hidden text-emerald-50/75 border border-emerald-400/20 rounded-full px-3 py-2" onclick="toggleMobileNav()" aria-controls="mobileNavPanel" aria-expanded="false" aria-label="Open navigation menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 7h16"/>
+                    <path d="M4 12h16"/>
+                    <path d="M4 17h16"/>
+                </svg>
             </button>
             <div class="desktop-nav-links hidden md:flex gap-6 text-sm font-semibold text-emerald-50/65">
                 <span class="nav-link" onclick="showSection('home')">Home</span>
+                <span class="nav-link" onclick="showSection('skills')">Skills</span>
                 <span class="nav-link" onclick="showSection('projects')">Projects</span>
                 <span class="nav-link" onclick="showSection('experience')">Experience</span>
                 <span class="nav-link" onclick="showSection('resume')">Resume</span>
@@ -755,6 +765,7 @@
         <div id="mobileNavPanel" class="mobile-nav-panel hidden md:hidden px-6 pb-2">
             <div class="flex flex-col text-sm font-semibold text-emerald-50/75">
                 <span class="nav-link mobile-nav-link" onclick="showSection('home')">Home</span>
+                <span class="nav-link mobile-nav-link" onclick="showSection('skills')">Skills</span>
                 <span class="nav-link mobile-nav-link" onclick="showSection('projects')">Projects</span>
                 <span class="nav-link mobile-nav-link" onclick="showSection('experience')">Experience</span>
                 <span class="nav-link mobile-nav-link" onclick="showSection('resume')">Resume</span>
@@ -859,6 +870,73 @@
                     <p class="text-emerald-50/56 text-sm mb-4">Technical skills in C++, Python, and Hardware design.</p>
                     <span class="accent-text font-bold text-sm italic">Get PDF →</span>
                 </div>
+            </div>
+        </section>
+
+        <!-- SECTION: SKILLS -->
+        <section id="skills" class="content-section">
+            <div class="mb-12">
+                <p class="section-label mb-3">Technical Expertise</p>
+                <h2 class="text-4xl font-black text-emerald-50">Skills & Tools</h2>
+                <p class="text-emerald-50/58 mt-4 max-w-3xl leading-relaxed">
+                    A focused mix of hardware, programming, and design tools I use to move from idea to prototype, with room to keep learning and improving.
+                </p>
+            </div>
+
+            <div class="panel p-6 md:p-8 rounded-3xl space-y-8">
+                <div class="grid gap-6 md:grid-cols-2">
+                    <div class="card p-6 rounded-2xl">
+                        <p class="section-label mb-3">Hardware</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Arduino / ESP32</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Sensors</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Breadboards</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Soldering</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Circuit Prototyping</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Hardware Debugging</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">PCB Design</span>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 rounded-2xl">
+                        <p class="section-label mb-3">Programming</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Python</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">C++</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">MATLAB</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">SQL</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">HTML/CSS</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">JavaScript Basics</span>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 rounded-2xl">
+                        <p class="section-label mb-3">Tools</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">LTspice</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">LabVIEW</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">KiCad</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Fusion 360</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">OnShape</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Git / GitHub</span>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 rounded-2xl">
+                        <p class="section-label mb-3">Focus Areas</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Control Systems</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Robotics</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Automation</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Embedded Systems</span>
+                            <span class="skill-tag px-3 py-2 rounded-full text-sm">Hardware Systems</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-emerald-50/58 text-sm leading-relaxed">
+                    Always learning new technologies and improving existing skills.
+                </p>
             </div>
         </section>
 
