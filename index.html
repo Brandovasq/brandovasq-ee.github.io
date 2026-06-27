@@ -310,6 +310,61 @@
             box-shadow: 0 0 14px rgba(52, 211, 153, 0.42);
         }
 
+        .timeline-bullet {
+            display: flex;
+            gap: 0.7rem;
+            align-items: flex-start;
+        }
+
+        .timeline-bullet::before {
+            content: "";
+            width: 0.46rem;
+            height: 0.46rem;
+            margin-top: 0.56rem;
+            border-radius: 999px;
+            border: 1.5px dotted rgba(238, 252, 245, 0.52);
+            background: transparent;
+            box-shadow: 0 0 8px rgba(52, 211, 153, 0.10);
+            flex: none;
+        }
+
+        .experience-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem 1rem;
+            align-items: center;
+            margin-bottom: 0.85rem;
+        }
+
+        .experience-role {
+            display: block;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .experience-location svg,
+        .experience-company svg {
+            width: 1rem;
+            height: 1rem;
+            flex: none;
+        }
+
+        .experience-company {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--green-bright);
+            font-weight: 700;
+        }
+
+        .experience-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: rgba(167, 189, 179, 0.84);
+            font-weight: 500;
+        }
+
         .page-decor {
             position: fixed;
             inset: 0;
@@ -400,7 +455,7 @@
         /* PLASMA WAVEFORM STYLING */
         .hero-stage {
             position: relative;
-            padding: 2.5rem 0;
+            padding: 2.25rem 0 0.75rem;
         }
 
         .hero-stage::before {
@@ -450,6 +505,8 @@
             opacity: 1;
             overflow: visible;
             mix-blend-mode: screen;
+            transform: translateY(0);
+            transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .electric-field::before {
@@ -634,13 +691,17 @@
         }
 
         @media (max-width: 1024px) {
-            .edge-wire,
+            .edge-wire {
+                opacity: 0.34;
+                width: 88px;
+            }
+
             .top-corner-trace {
-                display: none;
+                opacity: 0.20;
             }
 
             .hero-stage {
-                padding: 1.5rem 0;
+                padding: 1.5rem 0 0.5rem;
             }
 
             .electric-field {
@@ -654,6 +715,19 @@
                 opacity: 0.98;
                 overflow: visible;
                 mix-blend-mode: screen;
+            }
+        }
+
+        @media (max-width: 1180px) {
+            .edge-wire {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .edge-wire,
+            .top-corner-trace {
+                display: none;
             }
         }
 
@@ -889,7 +963,7 @@
                     <div class="electric-orb"></div>
                 </div>
 
-                <div class="max-w-4xl hero-panel rounded-3xl py-8 md:py-12">
+                <div class="max-w-4xl hero-panel rounded-3xl pt-8 md:pt-12 pb-4 md:pb-5">
                     <p class="section-label mb-6">Electrical Engineering Portfolio</p>
 
                     <h1 class="hero-name font-black mb-8">
@@ -927,7 +1001,7 @@
             </div>
 
             <!-- TECHNICAL EXPERTISE -->
-            <div id="skillsHome" class="skills-showcase mt-1 md:mt-2 mb-10">
+            <div id="skillsHome" class="skills-showcase mt-1 md:mt-0 mb-10">
                 <div class="skills-glow" aria-hidden="true"></div>
 
                 <div class="relative z-10">
@@ -1131,28 +1205,87 @@
                 <h2 class="text-4xl font-black text-emerald-50">Experience</h2>
             </div>
             <div class="space-y-12 border-l-2 timeline-line pl-8 panel rounded-3xl p-8 ml-2">
-                
                 <div class="timeline-dot">
-                    <span class="text-sm font-bold accent-text uppercase tracking-widest">Oct 2025 – Present</span>
-                    <h3 class="text-xl font-bold mt-1 text-emerald-50">Undergraduate Research Assistant</h3>
-                    <p class="text-emerald-50/45 font-medium mb-3 italic">R.O.S.E Lab, University of Cincinnati</p>
-                    <p class="text-emerald-50/60 leading-relaxed max-w-2xl">Analyzed physiological time-series data using HRV metrics (RMSSD, SDNN) and statistical methods to study stress patterns in engineering students.</p>
+                    <span class="text-sm font-bold accent-text uppercase tracking-widest">Jun 2026 – Present</span>
+                    <h3 class="text-xl font-bold mt-1 text-emerald-50 experience-role">
+                        Electrical Engineering Co-op
+                    </h3>
+                    <div class="experience-meta">
+                        <span class="experience-company"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1m-7 0h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0h10v4H7V6Z"/></svg>IMEG</span>
+                        <span class="experience-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s6-4.35 6-10a6 6 0 1 0-12 0c0 5.65 6 10 6 10Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 11a2 2 0 1 0 0.001-4.001A2 2 0 0 0 12 11Z"/></svg>Blue Ash, Ohio</span>
+                    </div>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl">Supported Revit and AutoCAD electrical document updates for power plans, lighting plans, and single-line diagrams.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Updated floor plans from markups by modifying receptacles, lighting fixtures, junction boxes, tags, notes, and callouts.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Assisted with single-line revisions and AGi32 lighting setup, including transformer and panel coordination, current checks, and AutoCAD cleanup.</p>
                 </div>
 
                 <div class="timeline-dot">
-                    <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">Aug 2025 – Present</span>
+                    <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">Oct 2025 – May 2026</span>
+                    <h3 class="text-xl font-bold mt-1 text-emerald-50 experience-role">
+                        Undergraduate Research Assistant
+                    </h3>
+                    <div class="experience-meta">
+                        <span class="experience-company"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1m-7 0h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0h10v4H7V6Z"/></svg>R.O.S.E Lab</span>
+                        <span class="experience-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s6-4.35 6-10a6 6 0 1 0-12 0c0 5.65 6 10 6 10Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 11a2 2 0 1 0 0.001-4.001A2 2 0 0 0 12 11Z"/></svg>University of Cincinnati</span>
+                    </div>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl">Analyzed time-series physiological datasets using HRV metrics and statistical methods to examine stress patterns in engineering students.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Reviewed about 30 peer-reviewed articles on stress, distress, trauma, and HRV to support study design and research synthesis.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Collaborated with faculty and lab members on poster preparation, documentation, and reproducible research workflows.</p>
+                </div>
+
+                <div class="timeline-dot">
+                    <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">Aug 2025 – Apr 2026</span>
                     <h3 class="text-xl font-bold mt-1 text-emerald-50">Student Ambassador</h3>
-                    <p class="text-emerald-50/45 font-medium mb-3 italic">University of Cincinnati Blue Ash</p>
-                    <p class="text-emerald-50/60 leading-relaxed max-w-2xl">Represent campus leadership by engaging with students and families while coordinating events to improve community connection.</p>
+                    <div class="experience-meta">
+                        <span class="experience-company"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1m-7 0h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0h10v4H7V6Z"/></svg>UC Blue Ash College</span>
+                        <span class="experience-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s6-4.35 6-10a6 6 0 1 0-12 0c0 5.65 6 10 6 10Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 11a2 2 0 1 0 0.001-4.001A2 2 0 0 0 12 11Z"/></svg>Blue Ash, Ohio</span>
+                    </div>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl">Represented UCBA as a campus leader and first point of contact for students, families, and guests.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Conducted campus tours and orientations for 1,800+ prospective students and guests while supporting Student Life events and outreach.</p>
                 </div>
 
                 <div class="timeline-dot">
                     <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">May 2025 – Aug 2025</span>
-                    <h3 class="text-xl font-bold mt-1 text-emerald-50">Python & SQL Trainee</h3>
-                    <p class="text-emerald-50/45 font-medium mb-3 italic">The Global Career Accelerator</p>
-                    <p class="text-emerald-50/60 leading-relaxed max-w-2xl">Performed data analysis on industry datasets using Python (Pandas, NumPy) and SQL to generate insights on sustainability.</p>
+                    <h3 class="text-xl font-bold mt-1 text-emerald-50">Student Orientation Leader</h3>
+                    <div class="experience-meta">
+                        <span class="experience-company"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1m-7 0h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0h10v4H7V6Z"/></svg>UC Blue Ash College</span>
+                        <span class="experience-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s6-4.35 6-10a6 6 0 1 0-12 0c0 5.65 6 10 6 10Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 11a2 2 0 1 0 0.001-4.001A2 2 0 0 0 12 11Z"/></svg>Blue Ash, Ohio</span>
+                    </div>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl">Facilitated communication with 150+ new students to support their transition into the University of Cincinnati.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Led campus tours for groups of 20+ students and mentored small groups by sharing resources and guidance.</p>
                 </div>
 
+                <div class="timeline-dot">
+                    <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">May 2025 – Aug 2025</span>
+                    <h3 class="text-xl font-bold mt-1 text-emerald-50 experience-role">
+                        Python &amp; SQL Trainee
+                    </h3>
+                    <div class="experience-meta">
+                        <span class="experience-company"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1m-7 0h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0h10v4H7V6Z"/></svg>The Global Career Accelerator</span>
+                        <span class="experience-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s6-4.35 6-10a6 6 0 1 0-12 0c0 5.65 6 10 6 10Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 11a2 2 0 1 0 0.001-4.001A2 2 0 0 0 12 11Z"/></svg>Apprenticeship</span>
+                    </div>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl">Analyzed real-world datasets in Jupyter Notebook using Python and SQL to generate actionable insights.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Built visualizations in Plotly, presented findings clearly, and collaborated with a global team to deliver accurate work on time.</p>
+                </div>
+            </div>
+
+            <div class="mt-12 panel rounded-3xl p-8">
+                <p class="section-label mb-4">Education</p>
+                <div class="space-y-6">
+                    <div class="timeline-dot">
+                        <span class="text-sm font-bold accent-text uppercase tracking-widest">Expected 2029</span>
+                        <h3 class="text-xl font-bold mt-1 text-emerald-50">Bachelor of Science, Electrical Engineering</h3>
+                        <p class="text-emerald-50/45 font-medium mb-3 italic">University of Cincinnati</p>
+                        <p class="text-emerald-50/60 leading-relaxed max-w-2xl">GPA: 3.97</p>
+                    </div>
+
+                    <div class="timeline-dot">
+                        <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">Aug 2021 – May 2024</span>
+                        <h3 class="text-xl font-bold mt-1 text-emerald-50">High School Diploma, Magna Cum Laude</h3>
+                        <p class="text-emerald-50/45 font-medium mb-3 italic">Fairfield High School</p>
+                        <p class="text-emerald-50/60 leading-relaxed max-w-2xl">Cumulative GPA: 4.3</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1389,11 +1522,16 @@
             document.body.style.setProperty('--cursor-y', `${event.clientY}px`);
         }
 
+        function getElectricFieldRestTop() {
+            return window.matchMedia('(max-width: 1024px)').matches ? 118 : 95;
+        }
+
         function handleElectricFieldScroll() {
             if (!heroStage || heroStage.closest('.content-section').classList.contains('hidden')) {
                 electricField.style.position = 'fixed';
-                electricField.style.top = '95px';
+                electricField.style.top = `${getElectricFieldRestTop()}px`;
                 electricField.style.opacity = '0';
+                electricField.style.transform = 'translateY(-12px)';
                 return;
             }
 
@@ -1401,19 +1539,24 @@
             const heroSubtitle = heroStage.querySelector('.hero-subtitle');
             const subtitleRect = heroSubtitle.getBoundingClientRect();
             const subtitleBottom = subtitleRect.bottom;
+            const lockPoint = getElectricFieldRestTop();
+            const fadeStart = lockPoint + 210;
+            const fadeProgress = Math.min(1, Math.max(0, (fadeStart - subtitleBottom) / (fadeStart - lockPoint)));
+            const fieldOpacity = 1 - (fadeProgress * 0.76);
+            const fieldLift = fadeProgress * -12;
 
-            // When subtitle scrolls out of view, lock the field in place
-            if (subtitleBottom <= 100) {
-                // Subtitle has scrolled past, lock field in place
+            // As the subtitle leaves view, dim the field before locking it into the hero.
+            if (subtitleBottom <= lockPoint) {
                 electricField.style.position = 'absolute';
-                const stopPosition = heroSubtitle.offsetTop + heroSubtitle.offsetHeight + 100;
+                const stopPosition = heroSubtitle.offsetTop + heroSubtitle.offsetHeight;
                 electricField.style.top = stopPosition + 'px';
-                electricField.style.opacity = '0.2';
+                electricField.style.opacity = '0.24';
+                electricField.style.transform = 'translateY(-12px)';
             } else {
-                // Subtitle is still visible, field follows scroll
                 electricField.style.position = 'fixed';
-                electricField.style.top = '95px';
-                electricField.style.opacity = '1';
+                electricField.style.top = `${lockPoint}px`;
+                electricField.style.opacity = fieldOpacity.toFixed(3);
+                electricField.style.transform = `translateY(${fieldLift.toFixed(1)}px)`;
             }
         }
 
@@ -1422,7 +1565,9 @@
             cursor.active = false;
         });
         window.addEventListener('scroll', handleElectricFieldScroll);
+        window.addEventListener('resize', handleElectricFieldScroll);
 
+        handleElectricFieldScroll();
         requestAnimationFrame(animateElectricField);
 
         // Gallery Logic
