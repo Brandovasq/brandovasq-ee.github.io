@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brando Vasquez Rodriguez | Electrical Engineer</title>
+    <meta name="description" content="Electrical engineering portfolio of Brando Vasquez Rodriguez, focused on industrial automation, controls, robotics, embedded systems, and electrical design.">
+    <title>Brando Vasquez Rodriguez | Electrical Engineering Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
@@ -177,17 +178,51 @@
         .skill-focus-card {
             border: 1px solid rgba(52, 211, 153, 0.16);
             background: rgba(8, 20, 17, 0.56);
-            min-height: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 1.25rem 1.5rem;
+            min-height: 180px;
+            padding: 1.4rem;
         }
 
         .skill-focus-card p {
             margin: 0;
-            max-width: 36rem;
+        }
+
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .focus-item {
+            position: relative;
+            min-width: 0;
+            padding: 1.15rem;
+            border: 1px solid rgba(52, 211, 153, 0.13);
+            border-radius: 1rem;
+            background: rgba(5, 14, 11, 0.58);
+            text-align: left;
+        }
+
+        .focus-number {
+            display: block;
+            margin-bottom: 1.6rem;
+            color: rgba(110, 231, 183, 0.56);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.18em;
+        }
+
+        .focus-item h3 {
+            color: var(--text);
+            font-size: 1rem;
+            font-weight: 800;
+            line-height: 1.25;
+        }
+
+        .focus-item p {
+            margin-top: 0.65rem;
+            color: rgba(238, 252, 245, 0.56);
+            font-size: 0.82rem;
+            line-height: 1.6;
         }
 
         .section-label {
@@ -334,6 +369,48 @@
             gap: 0.65rem 1rem;
             align-items: center;
             margin-bottom: 0.85rem;
+        }
+
+        .experience-heading,
+        .education-heading {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .experience-heading > div:first-child,
+        .education-heading > div:first-child {
+            min-width: 0;
+        }
+
+        .organization-logo-frame {
+            width: 138px;
+            height: 54px;
+            flex: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 0.7rem;
+            border: 1px solid rgba(238, 252, 245, 0.14);
+            border-radius: 0.85rem;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+        }
+
+        .organization-logo-frame.square {
+            width: 58px;
+            height: 58px;
+            padding: 0.4rem;
+            border-radius: 1rem;
+            background: #ffffff;
+        }
+
+        .organization-logo {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .experience-role {
@@ -596,6 +673,123 @@
             cursor: pointer;
         }
 
+        .featured-project-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .featured-project .project-preview {
+            height: 100%;
+            min-height: 360px;
+            margin: 0;
+        }
+
+        .project-subtitle {
+            color: rgba(110, 231, 183, 0.72);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .project-highlights {
+            display: grid;
+            gap: 0.55rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-highlight {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            color: rgba(238, 252, 245, 0.64);
+            font-size: 0.86rem;
+            line-height: 1.55;
+        }
+
+        .project-highlight::before {
+            content: "";
+            width: 0.42rem;
+            height: 0.42rem;
+            margin-top: 0.48rem;
+            flex: none;
+            border-radius: 999px;
+            background: var(--green);
+            box-shadow: 0 0 10px rgba(52, 211, 153, 0.34);
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.85rem;
+        }
+
+        .case-study-item {
+            padding: 1.1rem;
+            border: 1px solid rgba(52, 211, 153, 0.13);
+            border-radius: 1rem;
+            background: rgba(5, 14, 11, 0.52);
+        }
+
+        .case-study-item h4 {
+            margin-bottom: 0.55rem;
+            color: var(--green-bright);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .case-study-item p {
+            color: rgba(238, 252, 245, 0.56);
+            font-size: 0.8rem;
+            line-height: 1.55;
+        }
+
+        .architecture-preview {
+            cursor: default;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+        }
+
+        .architecture-preview::after {
+            content: "System flow";
+        }
+
+        .architecture-flow {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            gap: 0.55rem;
+            align-items: center;
+        }
+
+        .architecture-node {
+            min-width: 0;
+            padding: 0.75rem 0.45rem;
+            border: 1px solid rgba(52, 211, 153, 0.26);
+            border-radius: 0.75rem;
+            background: rgba(3, 7, 5, 0.78);
+            color: rgba(238, 252, 245, 0.84);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.68rem;
+            line-height: 1.35;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .architecture-arrow {
+            color: var(--green);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+        }
+
         .project-preview::before {
             content: "";
             position: absolute;
@@ -716,6 +910,19 @@
                 overflow: visible;
                 mix-blend-mode: screen;
             }
+
+            .featured-project-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-project .project-preview {
+                min-height: 300px;
+                height: 300px;
+            }
+
+            .case-study-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
         }
 
         @media (max-width: 1180px) {
@@ -761,7 +968,7 @@
             }
 
             .hero-name {
-                font-size: clamp(3.8rem, 10vw, 8.8rem);
+                font-size: clamp(3rem, 15.5vw, 4.4rem);
                 line-height: 0.88;
                 letter-spacing: -0.08em;
                 color: var(--text);
@@ -770,10 +977,110 @@
                     0 0 26px rgba(52, 211, 153, 0.18);
             }
 
+            .focus-grid,
+            .case-study-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .focus-number {
+                margin-bottom: 0.85rem;
+            }
+
+            .experience-heading,
+            .education-heading {
+                flex-direction: column;
+                gap: 0.9rem;
+            }
+
+            .organization-logo-frame {
+                width: 122px;
+                height: 48px;
+            }
+
+            .organization-logo-frame.square {
+                width: 52px;
+                height: 52px;
+            }
+
+            .timeline-panel {
+                margin-left: 0;
+                padding: 1.5rem 1.1rem 1.5rem 2rem;
+            }
+
+            .featured-project .project-preview {
+                min-height: 230px;
+                height: 230px;
+            }
+
+            .architecture-flow {
+                grid-template-columns: 1fr;
+                gap: 0.4rem;
+            }
+
+            .architecture-preview {
+                min-height: 285px;
+                height: auto;
+            }
+
+            .architecture-arrow {
+                transform: rotate(90deg);
+                text-align: center;
+                line-height: 0.8;
+            }
+
+            #prevBtn,
+            #nextBtn {
+                position: fixed;
+                z-index: 2;
+                width: 2.75rem;
+                height: 2.75rem;
+                border: 1px solid rgba(52, 211, 153, 0.28);
+                border-radius: 999px;
+                background: rgba(3, 7, 5, 0.78);
+                backdrop-filter: blur(10px);
+            }
+
+            #prevBtn {
+                left: 0.75rem;
+            }
+
+            #nextBtn {
+                right: 0.75rem;
+            }
+
             #modalImage {
                 max-height: 85vh;
+                max-width: calc(100vw - 2rem);
                 width: auto;
                 object-fit: contain;
+            }
+        }
+
+        @media (max-width: 380px) {
+            main,
+            nav > div:first-child,
+            #mobileNavPanel,
+            footer > div {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            .card,
+            .panel {
+                border-radius: 1.1rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
             }
         }
 
@@ -971,11 +1278,11 @@
                     </h1>
 
                     <h2 class="hero-subtitle font-black mb-7">
-                        Electrical Engineering Student <span class="accent-text">& Control-Focused</span> <span class="text-emerald-50/55">| UC Class of '29</span>
+                        Electrical Engineering Student <span class="accent-text">| Automation, Controls &amp; Robotics</span> <span class="text-emerald-50/55">| UC '29</span>
                     </h2>
 
                     <p class="text-xl text-emerald-50/68 leading-relaxed mb-10 max-w-3xl">
-                        Third-year Electrical Engineering student at the University of Cincinnati with interests in automation, robotics, hardware systems, and control systems. I build data-driven and embedded solutions that bridge real-world sensing, control, and intelligent decision-making.
+                        Third-year Electrical Engineering student at the University of Cincinnati focused on industrial automation, controls, and robotics. I build embedded and data-driven systems that connect sensing, hardware, and intelligent decision-making to real engineering problems.
                     </p>
 
                     <div class="flex flex-wrap gap-4">
@@ -983,19 +1290,19 @@
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                             Email Me
                         </a>
-                        <a href="https://github.com/Brandovasq" target="_blank" class="link-chip flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full">
+                        <a href="https://github.com/Brandovasq" target="_blank" rel="noopener noreferrer" class="link-chip flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full">
                             GitHub
                         </a>
-                        <a href="https://www.linkedin.com/in/brando-vasquezr" target="_blank" class="link-chip flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full">
+                        <a href="https://www.linkedin.com/in/brando-vasquezr" target="_blank" rel="noopener noreferrer" class="link-chip flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full">
                             LinkedIn
                         </a>
                     </div>
 
                     <div class="hero-tech-badges">
-                        <span class="tech-badge">Embedded Systems</span>
-                        <span class="tech-badge">Control</span>
+                        <span class="tech-badge">Industrial Automation</span>
+                        <span class="tech-badge">Controls</span>
                         <span class="tech-badge">Robotics</span>
-                        <span class="tech-badge">Sensors</span>
+                        <span class="tech-badge">Embedded Systems</span>
                     </div>
                 </div>
             </div>
@@ -1052,16 +1359,29 @@
 
                         <div class="skill-panel hidden" data-skill-panel="focus">
                             <div class="skill-focus-card rounded-2xl">
-                                <div>
-                                    <p class="text-xl md:text-2xl font-black text-emerald-50 leading-tight">On the works, through projects, involvement, and co-ops.</p>
-                                    <p class="mt-4 text-emerald-50/60 text-sm md:text-base leading-relaxed">These focus areas are growing through hands-on work, team involvement, and real-world experience.</p>
+                                <div class="focus-grid">
+                                    <article class="focus-item">
+                                        <span class="focus-number">01 / FOCUS</span>
+                                        <h3>Industrial Automation</h3>
+                                        <p>Building toward reliable production systems through electrical design, sensing, and embedded integration.</p>
+                                    </article>
+                                    <article class="focus-item">
+                                        <span class="focus-number">02 / FOCUS</span>
+                                        <h3>Controls</h3>
+                                        <p>Applying feedback, sensor fusion, and data-driven logic to understand and influence real-world systems.</p>
+                                    </article>
+                                    <article class="focus-item">
+                                        <span class="focus-number">03 / FOCUS</span>
+                                        <h3>Robotics</h3>
+                                        <p>Developing autonomous and wearable systems through hardware, software, and iterative testing.</p>
+                                    </article>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <p class="mt-6 text-emerald-50/58 text-sm leading-relaxed">
-                        Willing to keep enforcing and expanding my skills both technically and professionally.
+                        Continuously strengthening these skills through coursework, projects, research, and co-op experience.
                     </p>
                 </div>
             </div>
@@ -1071,19 +1391,19 @@
                 <div onclick="showSection('projects')" class="group cursor-pointer card p-8 rounded-2xl">
                     <p class="section-label mb-4">Projects</p>
                     <h3 class="text-lg font-bold mb-2 text-emerald-50">Projects</h3>
-                    <p class="text-emerald-50/56 text-sm mb-4">ESP32 Systems, LabVIEW Robotics, and MATLAB Tools.</p>
+                    <p class="text-emerald-50/56 text-sm mb-4">Wearable sensing, embedded systems, robotics, and full-stack tools.</p>
                     <span class="accent-text font-bold text-sm italic">View Work →</span>
                 </div>
                 <div onclick="showSection('experience')" class="group cursor-pointer card p-8 rounded-2xl">
                     <p class="section-label mb-4">Experience</p>
                     <h3 class="text-lg font-bold mb-2 text-emerald-50">Experience</h3>
-                    <p class="text-emerald-50/56 text-sm mb-4">Research at R.O.S.E Lab and Career Accelerator data analysis.</p>
+                    <p class="text-emerald-50/56 text-sm mb-4">Electrical design at IMEG, research at R.O.S.E Lab, and campus leadership.</p>
                     <span class="accent-text font-bold text-sm italic">View Career →</span>
                 </div>
                 <div onclick="showSection('resume')" class="group cursor-pointer card p-8 rounded-2xl">
                     <p class="section-label mb-4">Resume</p>
                     <h3 class="text-lg font-bold mb-2 text-emerald-50">Resume</h3>
-                    <p class="text-emerald-50/56 text-sm mb-4">Technical skills in C++, Python, and Hardware design.</p>
+                    <p class="text-emerald-50/56 text-sm mb-4">Revit, AutoCAD, C++, Python, and hands-on hardware design.</p>
                     <span class="accent-text font-bold text-sm italic">Get PDF →</span>
                 </div>
             </div>
@@ -1097,12 +1417,70 @@
             </div>
             <div class="grid md:grid-cols-2 gap-8">
 
+                <!-- Featured Project: Gym WRO -->
+                <article class="card featured-project p-6 md:p-8 rounded-2xl md:col-span-2">
+                    <div class="featured-project-layout">
+                        <div class="project-preview preview-stack" onclick="openGallery(['images/GymWRO/07_assembled_wearable_modules.jpeg','images/GymWRO/10_wearable_test_green_feedback.jpeg','images/GymWRO/08_wired_prototype_electronics.jpeg','images/GymWRO/05_arm_module_wiring_schematic.png','images/GymWRO/06_sensor_data_dashboard.png','images/GymWRO/14_team_with_wearable_prototype.jpeg'])">
+                            <img loading="lazy" decoding="async" class="preview-img main-preview" src="images/GymWRO/07_assembled_wearable_modules.jpeg" alt="Gym WRO assembled upper-arm and wrist wearable modules">
+                            <img loading="lazy" decoding="async" class="preview-img thumb one" src="images/GymWRO/10_wearable_test_green_feedback.jpeg" alt="Gym WRO prototype providing green LED feedback during a biceps curl test">
+                            <img loading="lazy" decoding="async" class="preview-img thumb two" src="images/GymWRO/06_sensor_data_dashboard.png" alt="Serial dashboard plotting Gym WRO EMG, range of motion, velocity, and quality data">
+                            <span class="preview-count">6 images</span>
+                        </div>
+
+                        <div class="flex flex-col min-w-0">
+                            <p class="section-label mb-3">Embedded Systems / Wearable Technology</p>
+                            <h3 class="text-2xl md:text-3xl font-black mb-2 text-emerald-50">Gym WRO</h3>
+                            <p class="project-subtitle mb-4">Wearable Rep Optimizer · Train harder. Measure smarter.</p>
+                            <p class="text-emerald-50/60 text-[15px] mb-5 leading-relaxed">
+                                Led a five-person multidisciplinary team in developing a wearable strength-training prototype that combines relative muscle activation from surface EMG with IMU-based movement tracking and immediate RGB LED feedback.
+                            </p>
+                            <div class="project-highlights">
+                                <p class="project-highlight">Designed the KiCad schematic and integrated an ESP32, MyoWare EMG sensor, BNO08X IMU, rechargeable power system, and wearable enclosures.</p>
+                                <p class="project-highlight">Built, soldered, programmed, and tested the prototype, refining sensor placement, calibration thresholds, and motion-based rep detection with biceps-curl trials.</p>
+                                <p class="project-highlight">Presented the working prototype and product concept to judges at the UC Innovation Challenge.</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">ESP32</span>
+                                <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Arduino C++</span>
+                                <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">MyoWare EMG</span>
+                                <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">BNO08X IMU</span>
+                                <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">KiCad</span>
+                                <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Fusion 360</span>
+                            </div>
+                            <div class="flex flex-wrap gap-3 mt-auto">
+                                <button onclick="openGallery(['images/GymWRO/07_assembled_wearable_modules.jpeg','images/GymWRO/10_wearable_test_green_feedback.jpeg','images/GymWRO/08_wired_prototype_electronics.jpeg','images/GymWRO/05_arm_module_wiring_schematic.png','images/GymWRO/06_sensor_data_dashboard.png','images/GymWRO/14_team_with_wearable_prototype.jpeg'])" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">View Gallery (6)</button>
+                                <a href="https://github.com/Samrat21-afk/Gymwro" target="_blank" rel="noopener noreferrer" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Team GitHub</a>
+                                <a href="https://samrat21-afk.github.io/Gymwro/" target="_blank" rel="noopener noreferrer" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Dashboard Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-study-grid mt-7">
+                        <div class="case-study-item">
+                            <h4>Problem</h4>
+                            <p>Workout logs capture sets and reps, but not how effort, range of motion, or movement quality changed within the set.</p>
+                        </div>
+                        <div class="case-study-item">
+                            <h4>System</h4>
+                            <p>Motion data drives rep counting and quality indicators; calibrated EMG provides relative activation feedback for the selected muscle.</p>
+                        </div>
+                        <div class="case-study-item">
+                            <h4>Current Scope</h4>
+                            <p>The prototype uses wired modules and one local EMG sensor. Its feedback is exploratory, not clinical or a precise measure of muscular failure.</p>
+                        </div>
+                        <div class="case-study-item">
+                            <h4>Next Steps</h4>
+                            <p>Smaller wireless modules, bilateral sensing, exercise-specific algorithms, deeper EMG integration, and structured validation.</p>
+                        </div>
+                    </div>
+                </article>
+
                 <!-- Project 1 -->
                 <div class="card p-8 rounded-2xl flex flex-col">
                     <div class="project-preview preview-stack" onclick="openGallery(['images/LightAlarm/finished_alarm_angled.jpeg','images/LightAlarm/display_modes_stacked.png','images/LightAlarm/breadboard_prototype_lcd_active.jpeg','images/LightAlarm/wired_prototype_perfboard.jpeg','images/LightAlarm/internal_assembly.jpeg','images/LightAlarm/enclosure_render.png','images/LightAlarm/enclosure_technical_drawing.png','images/LightAlarm/circuit_schematic.png'])">
-                        <img class="preview-img main-preview" src="images/LightAlarm/finished_alarm_angled.jpeg" alt="Light-responsive alarm prototype">
-                        <img class="preview-img thumb one" src="images/LightAlarm/display_modes_stacked.png" alt="Display modes">
-                        <img class="preview-img thumb two" src="images/LightAlarm/breadboard_prototype_lcd_active.jpeg" alt="Breadboard prototype">
+                        <img loading="lazy" decoding="async" class="preview-img main-preview" src="images/LightAlarm/finished_alarm_angled.jpeg" alt="Light-responsive alarm prototype">
+                        <img loading="lazy" decoding="async" class="preview-img thumb one" src="images/LightAlarm/display_modes_stacked.png" alt="Display modes">
+                        <img loading="lazy" decoding="async" class="preview-img thumb two" src="images/LightAlarm/breadboard_prototype_lcd_active.jpeg" alt="Breadboard prototype">
                     </div>
                     
                     <p class="section-label mb-4">Embedded Systems</p>
@@ -1118,16 +1496,16 @@
                     </div>
                     <div class="flex flex-wrap gap-3 mt-auto">
                         <button onclick="openGallery(['images/LightAlarm/finished_alarm_angled.jpeg','images/LightAlarm/display_modes_stacked.png','images/LightAlarm/breadboard_prototype_lcd_active.jpeg','images/LightAlarm/wired_prototype_perfboard.jpeg','images/LightAlarm/internal_assembly.jpeg','images/LightAlarm/enclosure_render.png','images/LightAlarm/enclosure_technical_drawing.png','images/LightAlarm/circuit_schematic.png'])" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">View Gallery (8)</button>
-                        <a href="https://github.com/Brandovasq/Smart_Enviromental_Alarm_Clock" target="_blank" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Source Code</a>
+                        <a href="https://github.com/Brandovasq/Smart_Enviromental_Alarm_Clock" target="_blank" rel="noopener noreferrer" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Source Code</a>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
                 <div class="card p-8 rounded-2xl flex flex-col">
                     <div class="project-preview preview-stack" onclick="openGallery(['images/SelfParkingRob/1mainview.png','images/SelfParkingRob/2sideview.jpg','images/SelfParkingRob/3topview.jpg','images/SelfParkingRob/4backview.jpg','images/SelfParkingRob/5RobotParking.jpeg','images/SelfParkingRob/6dimensions.jpeg','images/SelfParkingRob/7testMuleCode.png'])">
-                        <img class="preview-img main-preview" src="images/SelfParkingRob/1mainview.png" alt="Autonomous parking robot main view">
-                        <img class="preview-img thumb one" src="images/SelfParkingRob/5RobotParking.jpeg" alt="Robot parking test">
-                        <img class="preview-img thumb two" src="images/SelfParkingRob/7testMuleCode.png" alt="Robot LabVIEW test mule code">
+                        <img loading="lazy" decoding="async" class="preview-img main-preview" src="images/SelfParkingRob/1mainview.png" alt="Autonomous parking robot main view">
+                        <img loading="lazy" decoding="async" class="preview-img thumb one" src="images/SelfParkingRob/5RobotParking.jpeg" alt="Robot parking test">
+                        <img loading="lazy" decoding="async" class="preview-img thumb two" src="images/SelfParkingRob/7testMuleCode.png" alt="Robot LabVIEW test mule code">
                     </div>
 
                     <p class="section-label mb-4">Robotics</p>
@@ -1137,21 +1515,21 @@
                     </p>
                     <div class="flex flex-wrap gap-2 mb-6">
                         <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">LabVIEW</span>
-                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Sensor Integrating</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Sensor Integration</span>
                         <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Robotics</span>
                     </div>
                     <div class="flex flex-wrap gap-3 mt-auto">
                         <button onclick="openGallery(['images/SelfParkingRob/1mainview.png','images/SelfParkingRob/2sideview.jpg','images/SelfParkingRob/3topview.jpg','images/SelfParkingRob/4backview.jpg','images/SelfParkingRob/5RobotParking.jpeg','images/SelfParkingRob/6dimensions.jpeg','images/SelfParkingRob/7testMuleCode.png'])" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">View Gallery (7)</button>
-                        <a href="https://github.com/Brandovasq" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-center">Source Code</a>
+                        <a href="https://github.com/Brandovasq" target="_blank" rel="noopener noreferrer" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-center">Source Code</a>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
                 <div class="card p-8 rounded-2xl flex flex-col">
                     <div class="project-preview preview-stack" onclick="openGallery(['images/MatlabCalcPlot/MatrixCalcGraphPlot.png', 'images/MatlabCalcPlot/MatrixCalcGraphPlot2.png', 'images/MatlabCalcPlot/MatrixCalcGraphPlot3.png'])">
-                        <img class="preview-img main-preview" src="images/MatlabCalcPlot/MatrixCalcGraphPlot.png" alt="MATLAB matrix and graphing tool interface">
-                        <img class="preview-img thumb one" src="images/MatlabCalcPlot/MatrixCalcGraphPlot2.png" alt="MATLAB graphing tool second preview">
-                        <img class="preview-img thumb two" src="images/MatlabCalcPlot/MatrixCalcGraphPlot3.png" alt="MATLAB graphing tool third preview">
+                        <img loading="lazy" decoding="async" class="preview-img main-preview" src="images/MatlabCalcPlot/MatrixCalcGraphPlot.png" alt="MATLAB matrix and graphing tool interface">
+                        <img loading="lazy" decoding="async" class="preview-img thumb one" src="images/MatlabCalcPlot/MatrixCalcGraphPlot2.png" alt="MATLAB graphing tool second preview">
+                        <img loading="lazy" decoding="async" class="preview-img thumb two" src="images/MatlabCalcPlot/MatrixCalcGraphPlot3.png" alt="MATLAB graphing tool third preview">
                     </div>
 
                     <p class="section-label mb-4">MATLAB / GUI</p>
@@ -1168,9 +1546,41 @@
                     </div>
                     <div class="flex flex-wrap gap-3 mt-auto">
                         <button onclick="openGallery(['images/MatlabCalcPlot/MatrixCalcGraphPlot.png', 'images/MatlabCalcPlot/MatrixCalcGraphPlot2.png', 'images/MatlabCalcPlot/MatrixCalcGraphPlot3.png'])" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">View Gallery (3)</button>
-                        <a href="https://github.com/Brandovasq" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Source Code</a>
+                        <a href="https://github.com/Brandovasq" target="_blank" rel="noopener noreferrer" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Source Code</a>
                     </div>
                 </div>
+
+                <!-- Project 4 -->
+                <article class="card p-8 rounded-2xl flex flex-col">
+                    <div class="project-preview architecture-preview" aria-label="Architecture diagram showing an ordering interface connected to a Flask API and inventory dashboard">
+                        <div class="architecture-flow" aria-hidden="true">
+                            <span class="architecture-node">React<br>Order UI</span>
+                            <span class="architecture-arrow">→</span>
+                            <span class="architecture-node">Flask<br>API</span>
+                            <span class="architecture-arrow">→</span>
+                            <span class="architecture-node">React / Vite<br>Dashboard</span>
+                        </div>
+                        <span class="preview-count">Media coming soon</span>
+                    </div>
+
+                    <p class="section-label mb-4">Full-Stack / Hackathon</p>
+                    <h3 class="text-xl font-bold mb-3 text-emerald-50">Smart Burger Ordering &amp; Inventory Dashboard</h3>
+                    <p class="text-emerald-50/60 text-[15px] mb-6 leading-relaxed">
+                        Collaborated on a full-stack restaurant platform that connects a customer ordering flow to ingredient-level inventory updates and an operations dashboard. The system tracks stock as orders are placed, categorizes inventory status, and surfaces usage trends, forecasts, and refill recommendations.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">React</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">JavaScript</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Flask</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Vite</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">REST API</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Inventory Analytics</span>
+                    </div>
+                    <div class="flex flex-wrap gap-3 mt-auto">
+                        <a href="https://predictive-inventory-management.vercel.app" target="_blank" rel="noopener noreferrer" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Live Application</a>
+                        <a href="https://github.com/hackathonRev26/Full-Stack-Inventory-Web-Application-" target="_blank" rel="noopener noreferrer" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Source Code</a>
+                    </div>
+                </article>
 
             </div>
 
@@ -1180,9 +1590,9 @@
                 <div class="grid md:grid-cols-1 gap-8">
                     <div class="card p-8 rounded-2xl flex flex-col">
                         <div class="project-preview preview-stack" onclick="openGallery(['images/Soldering/1heart.jpeg', 'images/Soldering/FailedAttempt.jpeg', 'images/Soldering/finalheart.jpeg', 'images/Soldering/midwayheart.jpeg', 'images/Soldering/solderingstation.jpeg', 'images/Soldering/SpiderBot.jpeg'])">
-                            <img class="preview-img main-preview" src="images/Soldering/SpiderBot.jpeg" alt="Soldered SpiderBot">
-                            <img class="preview-img thumb one" src="images/Soldering/finalheart.jpeg" alt="Final heart LED soldering project">
-                            <img class="preview-img thumb two" src="images/Soldering/solderingstation.jpeg" alt="Soldering station">
+                            <img loading="lazy" decoding="async" class="preview-img main-preview" src="images/Soldering/SpiderBot.jpeg" alt="Soldered SpiderBot">
+                            <img loading="lazy" decoding="async" class="preview-img thumb one" src="images/Soldering/finalheart.jpeg" alt="Final heart LED soldering project">
+                            <img loading="lazy" decoding="async" class="preview-img thumb two" src="images/Soldering/solderingstation.jpeg" alt="Soldering station">
                         </div>
 
                         <p class="section-label mb-4">Hardware / Makerspace</p>
@@ -1204,44 +1614,62 @@
                 <p class="section-label mb-3">Professional Experience</p>
                 <h2 class="text-4xl font-black text-emerald-50">Experience</h2>
             </div>
-            <div class="space-y-12 border-l-2 timeline-line pl-8 panel rounded-3xl p-8 ml-2">
+            <div class="timeline-panel space-y-12 border-l-2 timeline-line pl-8 panel rounded-3xl p-8 ml-2">
                 <div class="timeline-dot">
-                    <span class="text-sm font-bold accent-text uppercase tracking-widest">Jun 2026 – Present</span>
-                    <h3 class="text-xl font-bold mt-1 text-emerald-50 experience-role">
-                        Electrical Engineering Co-op
-                    </h3>
+                    <div class="experience-heading">
+                        <div>
+                            <span class="text-sm font-bold accent-text uppercase tracking-widest">Jun 2026 – Aug 2026</span>
+                            <h3 class="text-xl font-bold mt-1 text-emerald-50 experience-role">Electrical Engineering Co-op</h3>
+                        </div>
+                        <div class="organization-logo-frame">
+                            <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/IMEG_logo.jpg" alt="IMEG logo">
+                        </div>
+                    </div>
                     <div class="experience-meta">
                         <span class="experience-company"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1m-7 0h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0h10v4H7V6Z"/></svg>IMEG</span>
                         <span class="experience-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s6-4.35 6-10a6 6 0 1 0-12 0c0 5.65 6 10 6 10Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 11a2 2 0 1 0 0.001-4.001A2 2 0 0 0 12 11Z"/></svg>Blue Ash, Ohio</span>
                     </div>
-                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl">Supported Revit and AutoCAD electrical document updates for power plans, lighting plans, and single-line diagrams.</p>
-                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Updated floor plans from markups by modifying receptacles, lighting fixtures, junction boxes, tags, notes, and callouts.</p>
-                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Assisted with single-line revisions and AGi32 lighting setup, including transformer and panel coordination, current checks, and AutoCAD cleanup.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl">Updated power, lighting, systems, and demolition drawings in Revit and AutoCAD across 10+ commercial and industrial projects, incorporating markups, circuiting, keynotes, and equipment changes.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Completed five field surveys at P&amp;G and GE Aerospace facilities, documenting electrical equipment for project drawings.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Revised eight single-line diagrams involving panels, transformers, disconnects, feeders, and transformer current calculations.</p>
                 </div>
 
                 <div class="timeline-dot">
-                    <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">Oct 2025 – May 2026</span>
-                    <h3 class="text-xl font-bold mt-1 text-emerald-50 experience-role">
-                        Undergraduate Research Assistant
-                    </h3>
+                    <div class="experience-heading">
+                        <div>
+                            <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">Oct 2025 – May 2026</span>
+                            <h3 class="text-xl font-bold mt-1 text-emerald-50 experience-role">Undergraduate Research Assistant</h3>
+                        </div>
+                        <div class="organization-logo-frame">
+                            <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/ROSE+logo_FINAL.webp" alt="R.O.S.E Lab logo">
+                        </div>
+                    </div>
                     <div class="experience-meta">
                         <span class="experience-company"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1m-7 0h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0h10v4H7V6Z"/></svg>R.O.S.E Lab</span>
                         <span class="experience-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s6-4.35 6-10a6 6 0 1 0-12 0c0 5.65 6 10 6 10Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 11a2 2 0 1 0 0.001-4.001A2 2 0 0 0 12 11Z"/></svg>University of Cincinnati</span>
                     </div>
-                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl">Analyzed time-series physiological datasets using HRV metrics and statistical methods to examine stress patterns in engineering students.</p>
-                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Reviewed about 30 peer-reviewed articles on stress, distress, trauma, and HRV to support study design and research synthesis.</p>
-                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Collaborated with faculty and lab members on poster preparation, documentation, and reproducible research workflows.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl">Analyzed time-series physiological data using statistical methods to examine stress patterns in engineering students.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Performed structured literature reviews and organized data to support experimental design and research methodology.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Collaborated with faculty and interdisciplinary teams to maintain research documentation and data reproducibility.</p>
                 </div>
 
                 <div class="timeline-dot">
-                    <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">Aug 2025 – Apr 2026</span>
-                    <h3 class="text-xl font-bold mt-1 text-emerald-50">Student Ambassador</h3>
+                    <div class="experience-heading">
+                        <div>
+                            <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">Aug 2025 – May 2026</span>
+                            <h3 class="text-xl font-bold mt-1 text-emerald-50">Student Ambassador</h3>
+                        </div>
+                        <div class="organization-logo-frame square">
+                            <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/University-Of-Cincinnati-Icon-Logo-Vector.svg-.png" alt="University of Cincinnati logo">
+                        </div>
+                    </div>
                     <div class="experience-meta">
                         <span class="experience-company"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1m-7 0h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0h10v4H7V6Z"/></svg>UC Blue Ash College</span>
                         <span class="experience-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s6-4.35 6-10a6 6 0 1 0-12 0c0 5.65 6 10 6 10Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 11a2 2 0 1 0 0.001-4.001A2 2 0 0 0 12 11Z"/></svg>Blue Ash, Ohio</span>
                     </div>
-                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl">Represented UCBA as a campus leader and first point of contact for students, families, and guests.</p>
-                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Conducted campus tours and orientations for 1,800+ prospective students and guests while supporting Student Life events and outreach.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl">Represented UCBA as a campus leader and first point of contact for more than 4,800 students and their families.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Conducted campus tours and orientations for 1,800+ prospective students and guests.</p>
+                    <p class="timeline-bullet text-emerald-50/60 leading-relaxed max-w-2xl mt-3">Served as a Student Life liaison, coordinating events and digital outreach with staff to strengthen student engagement.</p>
                 </div>
 
                 <div class="timeline-dot">
@@ -1273,8 +1701,15 @@
                 <p class="section-label mb-4">Education</p>
                 <div class="space-y-6">
                     <div class="timeline-dot">
-                        <span class="text-sm font-bold accent-text uppercase tracking-widest">Expected 2029</span>
-                        <h3 class="text-xl font-bold mt-1 text-emerald-50">Bachelor of Science, Electrical Engineering</h3>
+                        <div class="education-heading">
+                            <div>
+                                <span class="text-sm font-bold accent-text uppercase tracking-widest">Expected May 2029</span>
+                                <h3 class="text-xl font-bold mt-1 text-emerald-50">Bachelor of Science, Electrical Engineering</h3>
+                            </div>
+                            <div class="organization-logo-frame square">
+                                <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/University-Of-Cincinnati-Icon-Logo-Vector.svg-.png" alt="University of Cincinnati logo">
+                            </div>
+                        </div>
                         <p class="text-emerald-50/45 font-medium mb-3 italic">University of Cincinnati</p>
                         <p class="text-emerald-50/60 leading-relaxed max-w-2xl">GPA: 3.97</p>
                     </div>
@@ -1296,7 +1731,7 @@
                 <h2 class="text-4xl font-black text-emerald-50">Resume</h2>
             </div>
             <div class="panel p-6 md:p-8 rounded-3xl space-y-8">
-                <p class="text-emerald-50/65 text-lg max-w-3xl">Electrical Engineering student with hands-on experience in embedded systems, data analysis, and control-focused projects.</p>
+                <p class="text-emerald-50/65 text-lg max-w-3xl">Electrical Engineering student focused on industrial automation, controls, and robotics, with hands-on experience in electrical design, embedded systems, sensor integration, and data analysis.</p>
 
                 <div class="grid md:grid-cols-2 gap-12">
                     <div>
@@ -1313,9 +1748,14 @@
                         <h4 class="font-bold mb-6 uppercase text-xs tracking-[0.2em] accent-text">Technologies</h4>
                         <div class="flex flex-wrap gap-2">
                             <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">Arduino / ESP32</span>
+                            <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">Revit</span>
+                            <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">AutoCAD</span>
+                            <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">AGi32</span>
                             <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">LabVIEW</span>
                             <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">LTspice</span>
-                            <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">OnShape</span>
+                            <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">KiCad</span>
+                            <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">Fusion 360</span>
+                            <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">Sensor Integration</span>
                         </div>
                     </div>
                 </div>
@@ -1343,11 +1783,11 @@
             
             <div class="flex gap-8">
                 <!-- LinkedIn Logo -->
-                <a href="https://www.linkedin.com/in/brando-vasquezr" target="_blank" class="footer-icon text-emerald-50/45">
+                <a href="https://www.linkedin.com/in/brando-vasquezr" target="_blank" rel="noopener noreferrer" class="footer-icon text-emerald-50/45">
                     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </a>
                 <!-- GitHub Logo -->
-                <a href="https://github.com/Brandovasq" target="_blank" class="footer-icon text-emerald-50/45">
+                <a href="https://github.com/Brandovasq" target="_blank" rel="noopener noreferrer" class="footer-icon text-emerald-50/45">
                     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
                 </a>
                 <!-- Email Logo -->
@@ -1357,7 +1797,7 @@
             </div>
         </div>
         <div class="max-w-5xl mx-auto px-6 mt-12 text-xs text-emerald-50/25 tracking-widest uppercase">
-            © 2025 Brando Vasquez Rodriguez. Built for Engineering.
+            © 2026 Brando Vasquez Rodriguez. Built for Engineering.
         </div>
     </footer>
 
@@ -1367,7 +1807,7 @@
         
         <div class="relative w-full max-w-6xl px-4 flex flex-col items-center">
             <div class="relative">
-                <img id="modalImage" src="" class="rounded-lg shadow-2xl border border-emerald-400/20">
+                <img id="modalImage" src="" alt="Selected project gallery image" class="rounded-lg shadow-2xl border border-emerald-400/20">
                 
                 <!-- Prev Arrow -->
                 <button id="prevBtn" onclick="changeImage(-1)" class="absolute left-[-60px] top-1/2 -translate-y-1/2 text-emerald-50/50 hover:text-emerald-300 transition-all hidden">
@@ -1437,6 +1877,9 @@
         const heroStage = document.getElementById('heroStage');
         const electricField = document.querySelector('.electric-field');
         const electricPaths = document.querySelectorAll('.electric-path');
+        const shouldAnimateElectricField =
+            !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+            !window.matchMedia('(max-width: 640px)').matches;
 
         const cursor = {
             x: 500,
@@ -1560,15 +2003,18 @@
             }
         }
 
-        window.addEventListener('mousemove', disturbElectricField);
-        window.addEventListener('mouseleave', () => {
-            cursor.active = false;
-        });
+        if (shouldAnimateElectricField) {
+            window.addEventListener('mousemove', disturbElectricField);
+            window.addEventListener('mouseleave', () => {
+                cursor.active = false;
+            });
+            requestAnimationFrame(animateElectricField);
+        }
+
         window.addEventListener('scroll', handleElectricFieldScroll);
         window.addEventListener('resize', handleElectricFieldScroll);
 
         handleElectricFieldScroll();
-        requestAnimationFrame(animateElectricField);
 
         // Gallery Logic
         let currentImages = [];
