@@ -394,8 +394,10 @@
             padding: 0.5rem 0.7rem;
             border: 1px solid rgba(238, 252, 245, 0.14);
             border-radius: 0.85rem;
-            background: rgba(255, 255, 255, 0.96);
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+            background: rgba(4, 11, 9, 0.78);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 10px 24px rgba(0, 0, 0, 0.18);
         }
 
         .organization-logo-frame.square {
@@ -403,7 +405,27 @@
             height: 58px;
             padding: 0.4rem;
             border-radius: 1rem;
-            background: #ffffff;
+            background: rgba(4, 11, 9, 0.78);
+        }
+
+        .organization-logo-frame.uc-logo {
+            padding: 0;
+            overflow: hidden;
+            border-radius: 999px;
+            background: transparent;
+        }
+
+        .organization-logo-frame.uc-logo .organization-logo {
+            object-fit: cover;
+            border-radius: 999px;
+            transform: scale(1.02);
+        }
+
+        .organization-logo-frame.career-logo {
+            width: 68px;
+            height: 68px;
+            padding: 0.18rem;
+            background: #272727;
         }
 
         .organization-logo {
@@ -673,81 +695,6 @@
             cursor: pointer;
         }
 
-        .featured-project-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
-            gap: 2rem;
-            align-items: stretch;
-        }
-
-        .featured-project .project-preview {
-            height: 100%;
-            min-height: 360px;
-            margin: 0;
-        }
-
-        .project-subtitle {
-            color: rgba(110, 231, 183, 0.72);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.75rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-
-        .project-highlights {
-            display: grid;
-            gap: 0.55rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-highlight {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.65rem;
-            color: rgba(238, 252, 245, 0.64);
-            font-size: 0.86rem;
-            line-height: 1.55;
-        }
-
-        .project-highlight::before {
-            content: "";
-            width: 0.42rem;
-            height: 0.42rem;
-            margin-top: 0.48rem;
-            flex: none;
-            border-radius: 999px;
-            background: var(--green);
-            box-shadow: 0 0 10px rgba(52, 211, 153, 0.34);
-        }
-
-        .case-study-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 0.85rem;
-        }
-
-        .case-study-item {
-            padding: 1.1rem;
-            border: 1px solid rgba(52, 211, 153, 0.13);
-            border-radius: 1rem;
-            background: rgba(5, 14, 11, 0.52);
-        }
-
-        .case-study-item h4 {
-            margin-bottom: 0.55rem;
-            color: var(--green-bright);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.68rem;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-        }
-
-        .case-study-item p {
-            color: rgba(238, 252, 245, 0.56);
-            font-size: 0.8rem;
-            line-height: 1.55;
-        }
-
         .architecture-preview {
             cursor: default;
             display: flex;
@@ -911,18 +858,6 @@
                 mix-blend-mode: screen;
             }
 
-            .featured-project-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-project .project-preview {
-                min-height: 300px;
-                height: 300px;
-            }
-
-            .case-study-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
         }
 
         @media (max-width: 1180px) {
@@ -977,8 +912,7 @@
                     0 0 26px rgba(52, 211, 153, 0.18);
             }
 
-            .focus-grid,
-            .case-study-grid {
+            .focus-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1002,14 +936,14 @@
                 height: 52px;
             }
 
+            .organization-logo-frame.career-logo {
+                width: 62px;
+                height: 62px;
+            }
+
             .timeline-panel {
                 margin-left: 0;
                 padding: 1.5rem 1.1rem 1.5rem 2rem;
-            }
-
-            .featured-project .project-preview {
-                min-height: 230px;
-                height: 230px;
             }
 
             .architecture-flow {
@@ -1417,65 +1351,35 @@
             </div>
             <div class="grid md:grid-cols-2 gap-8">
 
-                <!-- Featured Project: Gym WRO -->
-                <article class="card featured-project p-6 md:p-8 rounded-2xl md:col-span-2">
-                    <div class="featured-project-layout">
-                        <div class="project-preview preview-stack" onclick="openGallery(['images/GymWRO/07_assembled_wearable_modules.jpeg','images/GymWRO/10_wearable_test_green_feedback.jpeg','images/GymWRO/08_wired_prototype_electronics.jpeg','images/GymWRO/05_arm_module_wiring_schematic.png','images/GymWRO/06_sensor_data_dashboard.png','images/GymWRO/14_team_with_wearable_prototype.jpeg'])">
-                            <img loading="lazy" decoding="async" class="preview-img main-preview" src="images/GymWRO/07_assembled_wearable_modules.jpeg" alt="Gym WRO assembled upper-arm and wrist wearable modules">
-                            <img loading="lazy" decoding="async" class="preview-img thumb one" src="images/GymWRO/10_wearable_test_green_feedback.jpeg" alt="Gym WRO prototype providing green LED feedback during a biceps curl test">
-                            <img loading="lazy" decoding="async" class="preview-img thumb two" src="images/GymWRO/06_sensor_data_dashboard.png" alt="Serial dashboard plotting Gym WRO EMG, range of motion, velocity, and quality data">
-                            <span class="preview-count">6 images</span>
-                        </div>
-
-                        <div class="flex flex-col min-w-0">
-                            <p class="section-label mb-3">Embedded Systems / Wearable Technology</p>
-                            <h3 class="text-2xl md:text-3xl font-black mb-2 text-emerald-50">Gym WRO</h3>
-                            <p class="project-subtitle mb-4">Wearable Rep Optimizer · Train harder. Measure smarter.</p>
-                            <p class="text-emerald-50/60 text-[15px] mb-5 leading-relaxed">
-                                Led a five-person multidisciplinary team in developing a wearable strength-training prototype that combines relative muscle activation from surface EMG with IMU-based movement tracking and immediate RGB LED feedback.
-                            </p>
-                            <div class="project-highlights">
-                                <p class="project-highlight">Designed the KiCad schematic and integrated an ESP32, MyoWare EMG sensor, BNO08X IMU, rechargeable power system, and wearable enclosures.</p>
-                                <p class="project-highlight">Built, soldered, programmed, and tested the prototype, refining sensor placement, calibration thresholds, and motion-based rep detection with biceps-curl trials.</p>
-                                <p class="project-highlight">Presented the working prototype and product concept to judges at the UC Innovation Challenge.</p>
-                            </div>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">ESP32</span>
-                                <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Arduino C++</span>
-                                <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">MyoWare EMG</span>
-                                <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">BNO08X IMU</span>
-                                <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">KiCad</span>
-                                <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Fusion 360</span>
-                            </div>
-                            <div class="flex flex-wrap gap-3 mt-auto">
-                                <button onclick="openGallery(['images/GymWRO/07_assembled_wearable_modules.jpeg','images/GymWRO/10_wearable_test_green_feedback.jpeg','images/GymWRO/08_wired_prototype_electronics.jpeg','images/GymWRO/05_arm_module_wiring_schematic.png','images/GymWRO/06_sensor_data_dashboard.png','images/GymWRO/14_team_with_wearable_prototype.jpeg'])" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">View Gallery (6)</button>
-                                <a href="https://github.com/Samrat21-afk/Gymwro" target="_blank" rel="noopener noreferrer" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Team GitHub</a>
-                                <a href="https://samrat21-afk.github.io/Gymwro/" target="_blank" rel="noopener noreferrer" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Dashboard Demo</a>
-                            </div>
-                        </div>
+                <!-- Project 1 -->
+                <article class="card p-8 rounded-2xl flex flex-col">
+                    <div class="project-preview preview-stack" onclick="openGallery(['images/GymWRO/07_assembled_wearable_modules.jpeg','images/GymWRO/10_wearable_test_green_feedback.jpeg','images/GymWRO/09-prototype-circuit-board.jpeg','images/GymWRO/08_wired_prototype_electronics.jpeg','images/GymWRO/05_arm_module_wiring_schematic.png','images/GymWRO/06_sensor_data_dashboard.png','images/GymWRO/14_team_with_wearable_prototype.jpeg'])">
+                        <img loading="lazy" decoding="async" class="preview-img main-preview" src="images/GymWRO/07_assembled_wearable_modules.jpeg" alt="Gym WRO assembled upper-arm and wrist wearable modules">
+                        <img loading="lazy" decoding="async" class="preview-img thumb one" src="images/GymWRO/10_wearable_test_green_feedback.jpeg" alt="Gym WRO prototype providing green LED feedback during a biceps curl test">
+                        <img loading="lazy" decoding="async" class="preview-img thumb two" src="images/GymWRO/09-prototype-circuit-board.jpeg" alt="Gym WRO prototype circuit board with its integrated components">
+                        <span class="preview-count">7 images</span>
                     </div>
 
-                    <div class="case-study-grid mt-7">
-                        <div class="case-study-item">
-                            <h4>Problem</h4>
-                            <p>Workout logs capture sets and reps, but not how effort, range of motion, or movement quality changed within the set.</p>
-                        </div>
-                        <div class="case-study-item">
-                            <h4>System</h4>
-                            <p>Motion data drives rep counting and quality indicators; calibrated EMG provides relative activation feedback for the selected muscle.</p>
-                        </div>
-                        <div class="case-study-item">
-                            <h4>Current Scope</h4>
-                            <p>The prototype uses wired modules and one local EMG sensor. Its feedback is exploratory, not clinical or a precise measure of muscular failure.</p>
-                        </div>
-                        <div class="case-study-item">
-                            <h4>Next Steps</h4>
-                            <p>Smaller wireless modules, bilateral sensing, exercise-specific algorithms, deeper EMG integration, and structured validation.</p>
-                        </div>
+                    <p class="section-label mb-4">Embedded Systems / Wearable Technology</p>
+                    <h3 class="text-xl font-bold mb-3 text-emerald-50">Gym WRO</h3>
+                    <p class="text-emerald-50/60 text-[15px] mb-6 leading-relaxed">
+                        Led a five-person multidisciplinary team in developing a wearable strength-training prototype that pairs MyoWare surface EMG with BNO08X motion sensing and real-time RGB feedback. Designed the KiCad schematic, built and programmed the ESP32 electronics, and refined sensor placement, calibration, and rep detection through biceps-curl testing before presenting the working prototype at the UC Innovation Challenge.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">ESP32</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Arduino C++</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Surface EMG</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">IMU Sensing</span>
+                        <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">KiCad</span>
+                    </div>
+                    <div class="flex flex-wrap gap-3 mt-auto">
+                        <button onclick="openGallery(['images/GymWRO/07_assembled_wearable_modules.jpeg','images/GymWRO/10_wearable_test_green_feedback.jpeg','images/GymWRO/09-prototype-circuit-board.jpeg','images/GymWRO/08_wired_prototype_electronics.jpeg','images/GymWRO/05_arm_module_wiring_schematic.png','images/GymWRO/06_sensor_data_dashboard.png','images/GymWRO/14_team_with_wearable_prototype.jpeg'])" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">View Gallery (7)</button>
+                        <a href="https://github.com/Samrat21-afk/Gymwro" target="_blank" rel="noopener noreferrer" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Team GitHub</a>
+                        <a href="https://samrat21-afk.github.io/Gymwro/" target="_blank" rel="noopener noreferrer" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Dashboard Demo</a>
                     </div>
                 </article>
 
-                <!-- Project 1 -->
+                <!-- Project 2 -->
                 <div class="card p-8 rounded-2xl flex flex-col">
                     <div class="project-preview preview-stack" onclick="openGallery(['images/LightAlarm/finished_alarm_angled.jpeg','images/LightAlarm/display_modes_stacked.png','images/LightAlarm/breadboard_prototype_lcd_active.jpeg','images/LightAlarm/wired_prototype_perfboard.jpeg','images/LightAlarm/internal_assembly.jpeg','images/LightAlarm/enclosure_render.png','images/LightAlarm/enclosure_technical_drawing.png','images/LightAlarm/circuit_schematic.png'])">
                         <img loading="lazy" decoding="async" class="preview-img main-preview" src="images/LightAlarm/finished_alarm_angled.jpeg" alt="Light-responsive alarm prototype">
@@ -1500,7 +1404,7 @@
                     </div>
                 </div>
 
-                <!-- Project 2 -->
+                <!-- Project 3 -->
                 <div class="card p-8 rounded-2xl flex flex-col">
                     <div class="project-preview preview-stack" onclick="openGallery(['images/SelfParkingRob/1mainview.png','images/SelfParkingRob/2sideview.jpg','images/SelfParkingRob/3topview.jpg','images/SelfParkingRob/4backview.jpg','images/SelfParkingRob/5RobotParking.jpeg','images/SelfParkingRob/6dimensions.jpeg','images/SelfParkingRob/7testMuleCode.png'])">
                         <img loading="lazy" decoding="async" class="preview-img main-preview" src="images/SelfParkingRob/1mainview.png" alt="Autonomous parking robot main view">
@@ -1524,7 +1428,7 @@
                     </div>
                 </div>
 
-                <!-- Project 3 -->
+                <!-- Project 4 -->
                 <div class="card p-8 rounded-2xl flex flex-col">
                     <div class="project-preview preview-stack" onclick="openGallery(['images/MatlabCalcPlot/MatrixCalcGraphPlot.png', 'images/MatlabCalcPlot/MatrixCalcGraphPlot2.png', 'images/MatlabCalcPlot/MatrixCalcGraphPlot3.png'])">
                         <img loading="lazy" decoding="async" class="preview-img main-preview" src="images/MatlabCalcPlot/MatrixCalcGraphPlot.png" alt="MATLAB matrix and graphing tool interface">
@@ -1550,7 +1454,7 @@
                     </div>
                 </div>
 
-                <!-- Project 4 -->
+                <!-- Project 5 -->
                 <article class="card p-8 rounded-2xl flex flex-col">
                     <div class="project-preview architecture-preview" aria-label="Architecture diagram showing an ordering interface connected to a Flask API and inventory dashboard">
                         <div class="architecture-flow" aria-hidden="true">
@@ -1621,8 +1525,8 @@
                             <span class="text-sm font-bold accent-text uppercase tracking-widest">Jun 2026 – Aug 2026</span>
                             <h3 class="text-xl font-bold mt-1 text-emerald-50 experience-role">Electrical Engineering Co-op</h3>
                         </div>
-                        <div class="organization-logo-frame">
-                            <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/IMEG_logo.jpg" alt="IMEG logo">
+                        <div class="organization-logo-frame square">
+                            <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/imeg-mark.webp" alt="IMEG logo">
                         </div>
                     </div>
                     <div class="experience-meta">
@@ -1641,7 +1545,7 @@
                             <h3 class="text-xl font-bold mt-1 text-emerald-50 experience-role">Undergraduate Research Assistant</h3>
                         </div>
                         <div class="organization-logo-frame">
-                            <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/ROSE+logo_FINAL.webp" alt="R.O.S.E Lab logo">
+                            <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/rose-lab-logo.webp" alt="R.O.S.E. Lab logo">
                         </div>
                     </div>
                     <div class="experience-meta">
@@ -1659,8 +1563,8 @@
                             <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">Aug 2025 – May 2026</span>
                             <h3 class="text-xl font-bold mt-1 text-emerald-50">Student Ambassador</h3>
                         </div>
-                        <div class="organization-logo-frame square">
-                            <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/University-Of-Cincinnati-Icon-Logo-Vector.svg-.png" alt="University of Cincinnati logo">
+                        <div class="organization-logo-frame square uc-logo">
+                            <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/university-of-cincinnati-logo.png" alt="University of Cincinnati logo">
                         </div>
                     </div>
                     <div class="experience-meta">
@@ -1673,8 +1577,15 @@
                 </div>
 
                 <div class="timeline-dot">
-                    <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">May 2025 – Aug 2025</span>
-                    <h3 class="text-xl font-bold mt-1 text-emerald-50">Student Orientation Leader</h3>
+                    <div class="experience-heading">
+                        <div>
+                            <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">May 2025 – Aug 2025</span>
+                            <h3 class="text-xl font-bold mt-1 text-emerald-50">Student Orientation Leader</h3>
+                        </div>
+                        <div class="organization-logo-frame square uc-logo">
+                            <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/university-of-cincinnati-logo.png" alt="University of Cincinnati logo">
+                        </div>
+                    </div>
                     <div class="experience-meta">
                         <span class="experience-company"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1m-7 0h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0h10v4H7V6Z"/></svg>UC Blue Ash College</span>
                         <span class="experience-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s6-4.35 6-10a6 6 0 1 0-12 0c0 5.65 6 10 6 10Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 11a2 2 0 1 0 0.001-4.001A2 2 0 0 0 12 11Z"/></svg>Blue Ash, Ohio</span>
@@ -1684,10 +1595,15 @@
                 </div>
 
                 <div class="timeline-dot">
-                    <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">May 2025 – Aug 2025</span>
-                    <h3 class="text-xl font-bold mt-1 text-emerald-50 experience-role">
-                        Python &amp; SQL Trainee
-                    </h3>
+                    <div class="experience-heading">
+                        <div>
+                            <span class="text-sm font-bold text-emerald-300/60 uppercase tracking-widest">May 2025 – Aug 2025</span>
+                            <h3 class="text-xl font-bold mt-1 text-emerald-50 experience-role">Python &amp; SQL Trainee</h3>
+                        </div>
+                        <div class="organization-logo-frame square career-logo">
+                            <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/global-career-accelerator-logo.jpg" alt="The Global Career Accelerator logo">
+                        </div>
+                    </div>
                     <div class="experience-meta">
                         <span class="experience-company"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1m-7 0h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0h10v4H7V6Z"/></svg>The Global Career Accelerator</span>
                         <span class="experience-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s6-4.35 6-10a6 6 0 1 0-12 0c0 5.65 6 10 6 10Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 11a2 2 0 1 0 0.001-4.001A2 2 0 0 0 12 11Z"/></svg>Apprenticeship</span>
@@ -1706,8 +1622,8 @@
                                 <span class="text-sm font-bold accent-text uppercase tracking-widest">Expected May 2029</span>
                                 <h3 class="text-xl font-bold mt-1 text-emerald-50">Bachelor of Science, Electrical Engineering</h3>
                             </div>
-                            <div class="organization-logo-frame square">
-                                <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/University-Of-Cincinnati-Icon-Logo-Vector.svg-.png" alt="University of Cincinnati logo">
+                            <div class="organization-logo-frame square uc-logo">
+                                <img loading="lazy" decoding="async" class="organization-logo" src="images/Logos/university-of-cincinnati-logo.png" alt="University of Cincinnati logo">
                             </div>
                         </div>
                         <p class="text-emerald-50/45 font-medium mb-3 italic">University of Cincinnati</p>
@@ -1877,9 +1793,7 @@
         const heroStage = document.getElementById('heroStage');
         const electricField = document.querySelector('.electric-field');
         const electricPaths = document.querySelectorAll('.electric-path');
-        const shouldAnimateElectricField =
-            !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
-            !window.matchMedia('(max-width: 640px)').matches;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         const cursor = {
             x: 500,
@@ -2003,7 +1917,11 @@
             }
         }
 
-        if (shouldAnimateElectricField) {
+        if (prefersReducedMotion) {
+            electricPaths.forEach(path => {
+                path.setAttribute('d', buildWavePath(path, 0));
+            });
+        } else {
             window.addEventListener('mousemove', disturbElectricField);
             window.addEventListener('mouseleave', () => {
                 cursor.active = false;
