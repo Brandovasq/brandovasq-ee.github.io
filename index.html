@@ -776,7 +776,6 @@
         }
 
         .card:hover .preview-img {
-            transform: scale(1.08);
             filter: saturate(1.05) contrast(1.04) brightness(0.92);
         }
 
@@ -806,12 +805,27 @@
             transform: rotate(-5deg);
         }
 
-        .card:hover .preview-stack .preview-img.thumb.one {
-            transform: translateY(-5px) rotate(7deg);
-        }
+        /* Inspect an individual thumbnail without changing the photo stack. */
+        @media (hover: hover) and (pointer: fine) {
+            .preview-stack .preview-img.thumb {
+                transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                    filter 0.25s ease;
+            }
 
-        .card:hover .preview-stack .preview-img.thumb.two {
-            transform: translateY(-7px) rotate(-8deg);
+            .preview-stack .preview-img.thumb.one { transform-origin: right bottom; }
+            .preview-stack .preview-img.thumb.two { transform-origin: right top; }
+
+            #projects .card .preview-stack .preview-img.thumb:hover {
+                z-index: 6;
+            }
+
+            #projects .card .preview-stack .preview-img.thumb.one:hover {
+                transform: rotate(4deg) scale(1.85);
+            }
+
+            #projects .card .preview-stack .preview-img.thumb.two:hover {
+                transform: rotate(-5deg) scale(1.85);
+            }
         }
 
         .preview-count {
@@ -1039,101 +1053,93 @@
             border: 0;
             display: block;
         }
+
+        /* Subtle PCB traces; the rest of the original visual design is preserved. */
+        .edge-wire {
+            width: clamp(54px, 6vw, 88px);
+            top: 100px;
+            bottom: 40px;
+            color: #70b89d;
+            opacity: 0.24;
+            mask-image: linear-gradient(transparent, #000 12%, #000 82%, transparent);
+        }
+        .edge-wire.right { transform: scaleX(-1); }
+
+        .circuit-signal {
+            stroke: #a2f4d1;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-dasharray: 42 958;
+            filter: drop-shadow(0 0 4px #34d399);
+            animation: circuit-flow 9s linear infinite;
+        }
+        .circuit-signal.delayed { animation-delay: -4.5s; animation-duration: 12s; }
+        .edge-wire.right .circuit-signal { animation-direction: reverse; }
+        @keyframes circuit-flow {
+            from { stroke-dashoffset: 1000; }
+            to { stroke-dashoffset: -1000; }
+        }
+        .motion-toggle {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 10;
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: rgba(6, 16, 13, 0.7);
+            color: var(--green-bright);
+            cursor: pointer;
+        }
+        .motion-toggle:hover { border-color: var(--green); background: #10271e; }
+        .motion-toggle:focus-visible { outline: 2px solid var(--green-bright); outline-offset: 4px; }
+        .motion-toggle svg { width: 16px; height: 16px; }
+        .motion-play { display: none; }
+        [data-motion-paused="true"] .motion-pause { display: none; }
+        [data-motion-paused="true"] .motion-play { display: block; }
+        [data-motion-paused="true"] .circuit-signal { animation-play-state: paused; }
+        @media (prefers-reduced-motion: reduce) {
+            .circuit-signal { animation-duration: 18s; }
+        }
     </style>
+    <link rel="stylesheet" href="enhancements.css">
+    <script defer src="enhancements.js"></script>
 </head>
 <body class="antialiased">
 
-    <!-- ELECTRICAL ENGINEERING EDGE DECOR -->
+    <!-- Quiet PCB traces stay outside the reading column. -->
     <div class="page-decor" aria-hidden="true">
-
-        <!-- Left edge wiring -->
-        <div class="edge-wire left">
-            <svg viewBox="0 0 172 860" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Clean PCB-style copper traces -->
-                <path d="M36 62 V238 Q36 254 52 254 H76 Q90 254 90 268 V394 Q90 408 76 408 H58 Q44 408 44 422 V620 Q44 636 60 636 H112" stroke="#FFAC4D" stroke-width="3.2"/>
-                <path d="M58 72 V184 Q58 198 72 198 H96 Q110 198 110 212 V742" stroke="#FFC06D" stroke-width="3"/>
-                <path d="M82 58 V146 Q82 160 96 160 H132" stroke="#E99A45" stroke-width="2.8"/>
-                <path d="M132 94 V292 Q132 306 118 306 H102 Q88 306 88 320 V742" stroke="#FFB35C" stroke-width="3"/>
-                <path d="M26 312 H60 Q74 312 74 326 V490 Q74 504 88 504 H118 Q132 504 132 518 V694" stroke="#E08A35" stroke-width="2.8"/>
-                <path d="M116 72 V226 Q116 240 130 240 H146" stroke="#FFD083" stroke-width="2.8"/>
-                <path d="M28 704 H72 Q86 704 86 690 V574 Q86 560 100 560 H140" stroke="#F2A144" stroke-width="3"/>
-                <path d="M52 780 H118 Q132 780 132 766 V736" stroke="#FFC06D" stroke-width="2.8"/>
-
-                <!-- Copper pad rings -->
-                <circle cx="36" cy="62" r="8" fill="rgba(6,16,13,0.65)" stroke="#FFC06D" stroke-width="3"/>
-                <circle cx="58" cy="72" r="7" fill="rgba(6,16,13,0.65)" stroke="#FFD083" stroke-width="3"/>
-                <circle cx="82" cy="58" r="6" fill="rgba(6,16,13,0.65)" stroke="#E99A45" stroke-width="2.6"/>
-                <circle cx="132" cy="94" r="7" fill="rgba(6,16,13,0.65)" stroke="#FFB35C" stroke-width="3"/>
-                <circle cx="146" cy="240" r="6" fill="rgba(6,16,13,0.65)" stroke="#FFD083" stroke-width="2.6"/>
-                <circle cx="26" cy="312" r="7" fill="rgba(6,16,13,0.65)" stroke="#E08A35" stroke-width="3"/>
-                <circle cx="132" cy="694" r="7" fill="rgba(6,16,13,0.65)" stroke="#E08A35" stroke-width="3"/>
-                <circle cx="112" cy="636" r="7" fill="rgba(6,16,13,0.65)" stroke="#FFAC4D" stroke-width="3"/>
-                <circle cx="140" cy="560" r="6" fill="rgba(6,16,13,0.65)" stroke="#F2A144" stroke-width="2.7"/>
-                <circle cx="52" cy="780" r="8" fill="rgba(6,16,13,0.65)" stroke="#FFC06D" stroke-width="3"/>
-            </svg>
-
-            <span class="wire-node green" style="left:30px; top:56px;"></span>
-            <span class="wire-node blue" style="left:126px; top:88px;"></span>
-            <span class="wire-node amber" style="left:140px; top:234px;"></span>
-            <span class="wire-node blue" style="left:106px; top:630px;"></span>
-            <span class="wire-node green" style="left:46px; top:774px;"></span>
-        </div>
-
-        <!-- Right edge wiring -->
-        <div class="edge-wire right">
-            <svg viewBox="0 0 172 860" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Clean mirrored PCB-style copper traces -->
-                <path d="M136 62 V238 Q136 254 120 254 H96 Q82 254 82 268 V394 Q82 408 96 408 H114 Q128 408 128 422 V620 Q128 636 112 636 H60" stroke="#FFAC4D" stroke-width="3.2"/>
-                <path d="M114 72 V184 Q114 198 100 198 H76 Q62 198 62 212 V742" stroke="#FFC06D" stroke-width="3"/>
-                <path d="M90 58 V146 Q90 160 76 160 H40" stroke="#E99A45" stroke-width="2.8"/>
-                <path d="M40 94 V292 Q40 306 54 306 H70 Q84 306 84 320 V742" stroke="#FFB35C" stroke-width="3"/>
-                <path d="M146 312 H112 Q98 312 98 326 V490 Q98 504 84 504 H54 Q40 504 40 518 V694" stroke="#E08A35" stroke-width="2.8"/>
-                <path d="M56 72 V226 Q56 240 42 240 H26" stroke="#FFD083" stroke-width="2.8"/>
-                <path d="M144 704 H100 Q86 704 86 690 V574 Q86 560 72 560 H32" stroke="#F2A144" stroke-width="3"/>
-                <path d="M120 780 H54 Q40 780 40 766 V736" stroke="#FFC06D" stroke-width="2.8"/>
-
-                <!-- Copper pad rings -->
-                <circle cx="136" cy="62" r="8" fill="rgba(6,16,13,0.65)" stroke="#FFC06D" stroke-width="3"/>
-                <circle cx="114" cy="72" r="7" fill="rgba(6,16,13,0.65)" stroke="#FFD083" stroke-width="3"/>
-                <circle cx="90" cy="58" r="6" fill="rgba(6,16,13,0.65)" stroke="#E99A45" stroke-width="2.6"/>
-                <circle cx="40" cy="94" r="7" fill="rgba(6,16,13,0.65)" stroke="#FFB35C" stroke-width="3"/>
-                <circle cx="26" cy="240" r="6" fill="rgba(6,16,13,0.65)" stroke="#FFD083" stroke-width="2.6"/>
-                <circle cx="146" cy="312" r="7" fill="rgba(6,16,13,0.65)" stroke="#E08A35" stroke-width="3"/>
-                <circle cx="40" cy="694" r="7" fill="rgba(6,16,13,0.65)" stroke="#E08A35" stroke-width="3"/>
-                <circle cx="60" cy="636" r="7" fill="rgba(6,16,13,0.65)" stroke="#FFAC4D" stroke-width="3"/>
-                <circle cx="32" cy="560" r="6" fill="rgba(6,16,13,0.65)" stroke="#F2A144" stroke-width="2.7"/>
-                <circle cx="120" cy="780" r="8" fill="rgba(6,16,13,0.65)" stroke="#FFC06D" stroke-width="3"/>
-            </svg>
-
-            <span class="wire-node green" style="right:30px; top:56px;"></span>
-            <span class="wire-node blue" style="right:126px; top:88px;"></span>
-            <span class="wire-node amber" style="right:140px; top:234px;"></span>
-            <span class="wire-node blue" style="right:106px; top:630px;"></span>
-            <span class="wire-node green" style="right:46px; top:774px;"></span>
-        </div>
-
-        <!-- Top corner traces -->
-        <div class="top-corner-trace left">
-            <svg viewBox="0 0 178 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 18 H74 V44 H166" stroke="#D89B52" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 34 H58 V64 H122" stroke="#C88A3D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M74 18 V28" stroke="#E2AB66" stroke-width="2.8" stroke-linecap="round"/>
-                <circle cx="12" cy="18" r="4" fill="#34d399"/>
-                <circle cx="74" cy="44" r="4" fill="#60a5fa"/>
-                <circle cx="166" cy="44" r="4" fill="#34d399"/>
-            </svg>
-        </div>
-
-        <div class="top-corner-trace right">
-            <svg viewBox="0 0 178 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 18 H74 V44 H166" stroke="#D89B52" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 34 H58 V64 H122" stroke="#C88A3D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M74 18 V28" stroke="#E2AB66" stroke-width="2.8" stroke-linecap="round"/>
-                <circle cx="12" cy="18" r="4" fill="#34d399"/>
-                <circle cx="74" cy="44" r="4" fill="#60a5fa"/>
-                <circle cx="166" cy="44" r="4" fill="#34d399"/>
-            </svg>
-        </div>
+        <div class="edge-wire left"><svg viewBox="0 0 120 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g stroke="currentColor" stroke-width="1.3" stroke-linejoin="round">
+                    <path d="M22 42 V194 L46 218 V410 L70 434 V654"/>
+                    <path d="M38 70 V178 L62 202 V394 L86 418 V602"/>
+                    <path d="M54 98 V162 L78 186 V306"/>
+                    <path d="M22 506 V678 L46 702 H86"/>
+                    <circle cx="22" cy="38" r="4"/><circle cx="38" cy="66" r="4"/>
+                    <circle cx="54" cy="94" r="4"/><circle cx="78" cy="310" r="4"/>
+                    <circle cx="70" cy="658" r="4"/><circle cx="86" cy="606" r="4"/>
+                    <circle cx="22" cy="502" r="4"/><circle cx="90" cy="702" r="4"/>
+                </g>
+                <path class="circuit-signal" pathLength="1000" d="M22 42 V194 L46 218 V410 L70 434 V654"/>
+                <path class="circuit-signal delayed" pathLength="1000" d="M54 98 V162 L78 186 V306"/>
+            </svg></div>
+        <div class="edge-wire right"><svg viewBox="0 0 120 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g stroke="currentColor" stroke-width="1.3" stroke-linejoin="round">
+                    <path d="M22 42 V194 L46 218 V410 L70 434 V654"/>
+                    <path d="M38 70 V178 L62 202 V394 L86 418 V602"/>
+                    <path d="M54 98 V162 L78 186 V306"/>
+                    <path d="M22 506 V678 L46 702 H86"/>
+                    <circle cx="22" cy="38" r="4"/><circle cx="38" cy="66" r="4"/>
+                    <circle cx="54" cy="94" r="4"/><circle cx="78" cy="310" r="4"/>
+                    <circle cx="70" cy="658" r="4"/><circle cx="86" cy="606" r="4"/>
+                    <circle cx="22" cy="502" r="4"/><circle cx="90" cy="702" r="4"/>
+                </g>
+                <path class="circuit-signal" pathLength="1000" d="M22 42 V194 L46 218 V410 L70 434 V654"/>
+                <path class="circuit-signal delayed" pathLength="1000" d="M54 98 V162 L78 186 V306"/>
+            </svg></div>
     </div>
 
     <!-- NAVIGATION BAR -->
@@ -1148,18 +1154,18 @@
                 </svg>
             </button>
             <div class="desktop-nav-links hidden md:flex gap-6 text-sm font-semibold text-emerald-50/65">
-                <span class="nav-link" onclick="showSection('home')">Home</span>
-                <span class="nav-link" onclick="showSection('projects')">Projects</span>
-                <span class="nav-link" onclick="showSection('experience')">Experience</span>
-                <span class="nav-link" onclick="showSection('resume')">Resume</span>
+                <button type="button" class="nav-link" onclick="showSection('home')">Home</button>
+                <button type="button" class="nav-link" onclick="showSection('projects')">Projects</button>
+                <button type="button" class="nav-link" onclick="showSection('experience')">Experience</button>
+                <button type="button" class="nav-link" onclick="showSection('resume')">Resume</button>
             </div>
         </div>
         <div id="mobileNavPanel" class="mobile-nav-panel hidden md:hidden px-6 pb-2">
             <div class="flex flex-col text-sm font-semibold text-emerald-50/75">
-                <span class="nav-link mobile-nav-link" onclick="showSection('home')">Home</span>
-                <span class="nav-link mobile-nav-link" onclick="showSection('projects')">Projects</span>
-                <span class="nav-link mobile-nav-link" onclick="showSection('experience')">Experience</span>
-                <span class="nav-link mobile-nav-link" onclick="showSection('resume')">Resume</span>
+                <button type="button" class="nav-link mobile-nav-link" onclick="showSection('home')">Home</button>
+                <button type="button" class="nav-link mobile-nav-link" onclick="showSection('projects')">Projects</button>
+                <button type="button" class="nav-link mobile-nav-link" onclick="showSection('experience')">Experience</button>
+                <button type="button" class="nav-link mobile-nav-link" onclick="showSection('resume')">Resume</button>
             </div>
         </div>
     </nav>
@@ -1170,6 +1176,10 @@
         <!-- SECTION: HOME -->
         <section id="home" class="content-section">
             <div class="hero-stage mb-5 md:mb-6" id="heroStage">
+                <button class="motion-toggle" type="button" aria-label="Pause animations" title="Pause animations" onclick="toggleSiteMotion()">
+                    <svg class="motion-pause" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 3h3v10H4zM9 3h3v10H9z"/></svg>
+                    <svg class="motion-play" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg>
+                </button>
                 <div class="electric-field" aria-hidden="true">
                     <svg class="electric-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -1372,6 +1382,7 @@
                         <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">IMU Sensing</span>
                         <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">KiCad</span>
                     </div>
+                    <button class="study-link" type="button" onclick="openBuildStudy('gym')">Explore the system <span aria-hidden="true">→</span></button>
                     <div class="flex flex-wrap gap-3 mt-auto">
                         <button onclick="openGallery(['images/GymWRO/07_assembled_wearable_modules.jpeg','images/GymWRO/10_wearable_test_green_feedback.jpeg','images/GymWRO/09-prototype-circuit-board.jpeg','images/GymWRO/08_wired_prototype_electronics.jpeg','images/GymWRO/05_arm_module_wiring_schematic.png','images/GymWRO/06_sensor_data_dashboard.png','images/GymWRO/14_team_with_wearable_prototype.jpeg'])" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">View Gallery (7)</button>
                         <a href="https://github.com/Samrat21-afk/Gymwro" target="_blank" rel="noopener noreferrer" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Team GitHub</a>
@@ -1398,11 +1409,91 @@
                         <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">Fusion 360</span>
                         <span class="skill-tag px-3 py-1 rounded-md text-xs font-medium">KiCad</span>
                     </div>
+                    <button class="study-link" type="button" onclick="openBuildStudy('alarm')">See the build stages <span aria-hidden="true">→</span></button>
                     <div class="flex flex-wrap gap-3 mt-auto">
                         <button onclick="openGallery(['images/LightAlarm/finished_alarm_angled.jpeg','images/LightAlarm/display_modes_stacked.png','images/LightAlarm/breadboard_prototype_lcd_active.jpeg','images/LightAlarm/wired_prototype_perfboard.jpeg','images/LightAlarm/internal_assembly.jpeg','images/LightAlarm/enclosure_render.png','images/LightAlarm/enclosure_technical_drawing.png','images/LightAlarm/circuit_schematic.png'])" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">View Gallery (8)</button>
                         <a href="https://github.com/Brandovasq/Smart_Enviromental_Alarm_Clock" target="_blank" rel="noopener noreferrer" class="green-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Source Code</a>
                     </div>
                 </div>
+
+                <section class="build-lab" id="inside-builds" aria-labelledby="build-lab-title">
+                    <div class="lab-heading">
+                        <div>
+                            <p class="section-label">From signal to prototype</p>
+                            <h3 id="build-lab-title">Inside the builds</h3>
+                        </div>
+                        <div class="lab-tabs" role="tablist" aria-label="Explore a project">
+                            <button class="lab-tab" id="gym-study-tab" type="button" role="tab" aria-selected="true" aria-controls="gym-study" data-study-tab="gym">Gym WRO</button>
+                            <button class="lab-tab" id="alarm-study-tab" type="button" role="tab" aria-selected="false" aria-controls="alarm-study" tabindex="-1" data-study-tab="alarm">Light-responsive alarm</button>
+                        </div>
+                    </div>
+
+                    <div class="lab-panel" id="gym-study" role="tabpanel" aria-labelledby="gym-study-tab" data-study-panel="gym" tabindex="0">
+                        <p class="lab-intro">Follow the signal from muscle and motion sensing to visual feedback. Select a component to locate it on the prototype.</p>
+                        <div class="signal-flow" aria-label="MyoWare and BNO08X sensors connect to the ESP32, which drives RGB feedback">
+                            <div class="signal-inputs">
+                                <button class="signal-node" type="button" data-system-part="emg" aria-pressed="true" aria-controls="system-explanation"><small>01 / EMG</small><strong>MyoWare EMG</strong></button>
+                                <button class="signal-node" type="button" data-system-part="imu" aria-pressed="false" aria-controls="system-explanation"><small>02 / IMU</small><strong>BNO08X IMU</strong></button>
+                            </div>
+                            <svg class="signal-link" viewBox="0 0 42 166" preserveAspectRatio="none" aria-hidden="true">
+                                <path class="signal-track" d="M0 38H12L21 47V83H42M0 128H12L21 119V83"/>
+                                <path class="signal-pulse" pathLength="100" d="M0 38H12L21 47V83H42"/>
+                                <path class="signal-pulse" pathLength="100" d="M0 128H12L21 119V83H42"/>
+                            </svg>
+                            <button class="signal-node" type="button" data-system-part="esp32" aria-pressed="false" aria-controls="system-explanation"><small>03 / MCU</small><strong>ESP32</strong></button>
+                            <svg class="signal-link" viewBox="0 0 42 166" preserveAspectRatio="none" aria-hidden="true">
+                                <path class="signal-track" d="M0 83H42"/>
+                                <path class="signal-pulse" pathLength="100" d="M0 83H42"/>
+                            </svg>
+                            <button class="signal-node" type="button" data-system-part="rgb" aria-pressed="false" aria-controls="system-explanation"><small>04 / LED</small><strong>RGB LEDs</strong></button>
+                        </div>
+                        <div class="system-layout">
+                            <figure>
+                                <button class="system-photo" type="button" onclick="openGallery(['images/GymWRO/09-prototype-circuit-board.jpeg'])" aria-label="Open the Gym WRO prototype photograph">
+                                    <img src="images/GymWRO/09-prototype-circuit-board.jpeg" alt="Gym WRO prototype: MyoWare sensor at right, ESP32 at center, and motion sensor with LED strip at left" loading="lazy" decoding="async" width="1600" height="1200">
+                                    <span class="component-region is-active" data-component-region="emg" style="--region-x:82.5%;--region-y:29%;--region-w:12.5%;--region-h:14.5%" aria-hidden="true"></span>
+                                    <span class="component-region" data-component-region="imu" style="--region-x:37.8%;--region-y:25.7%;--region-w:5%;--region-h:9.2%" aria-hidden="true"></span>
+                                    <span class="component-region" data-component-region="esp32" style="--region-x:51.5%;--region-y:25%;--region-w:14.8%;--region-h:10.5%" aria-hidden="true"></span>
+                                    <span class="component-region" data-component-region="rgb" style="--region-x:35.1%;--region-y:17.8%;--region-w:5.2%;--region-h:17.3%" aria-hidden="true"></span>
+                                </button>
+                                <figcaption class="system-caption">The wired prototype before its modules were assembled into the wearable.</figcaption>
+                            </figure>
+                            <div class="system-notes" id="system-explanation" aria-live="polite" aria-atomic="true">
+                                <span class="part-index" id="part-index">01 / MUSCLE SENSING</span>
+                                <h4 id="part-title">MyoWare surface EMG</h4>
+                                <p id="part-description">The MyoWare sensor provides the muscle-activity signal used by the wearable during biceps-curl testing.</p>
+                            </div>
+                        </div>
+                        <div class="lab-resources">
+                            <button type="button" onclick="openGallery(['images/GymWRO/05_arm_module_wiring_schematic.png'])">View wiring schematic ↗</button>
+                            <button type="button" onclick="openGallery(['images/GymWRO/10_wearable_test_green_feedback.jpeg','images/GymWRO/07_assembled_wearable_modules.jpeg'])">See the wearable in use ↗</button>
+                        </div>
+                    </div>
+
+                    <div class="lab-panel" id="alarm-study" role="tabpanel" aria-labelledby="alarm-study-tab" data-study-panel="alarm" tabindex="0" hidden>
+                        <p class="lab-intro">From breadboard connections to a working alarm in a custom enclosure. Select a stage to explore the build.</p>
+                        <div class="build-stages" role="group" aria-label="Alarm build stages">
+                            <button class="build-stage" type="button" data-build-stage="1" aria-pressed="true" aria-controls="alarm-stage-view" data-image="images/LightAlarm/breadboard_prototype_lcd_active.jpeg" data-alt="Alarm breadboard with ESP32, sensors, and active LCD" data-index="01 / 04" data-title="Breadboard testing" data-description="The ESP32, sensors, and LCD are connected on a breadboard before the electronics move to a soldered prototype."><img src="images/LightAlarm/breadboard_prototype_lcd_active.jpeg" alt="" loading="lazy" decoding="async" width="160" height="100"><span><small>01</small>Breadboard</span></button>
+                            <button class="build-stage" type="button" data-build-stage="2" aria-pressed="false" aria-controls="alarm-stage-view" data-image="images/LightAlarm/wired_prototype_perfboard.jpeg" data-alt="Wired alarm electronics on soldered perfboard" data-index="02 / 04" data-title="Soldered electronics" data-description="The electronics move from breadboard connections to a wired, soldered prototype."><img src="images/LightAlarm/wired_prototype_perfboard.jpeg" alt="" loading="lazy" decoding="async" width="160" height="100"><span><small>02</small>Soldered prototype</span></button>
+                            <button class="build-stage" type="button" data-build-stage="3" aria-pressed="false" aria-controls="alarm-stage-view" data-image="images/LightAlarm/enclosure_render.png" data-alt="Fusion 360 render of the alarm enclosure" data-index="03 / 04" data-title="Fusion 360 enclosure" data-description="A custom enclosure brings the electronics, display, and controls into one housing."><img src="images/LightAlarm/enclosure_render.png" alt="" loading="lazy" decoding="async" width="160" height="100"><span><small>03</small>Enclosure design</span></button>
+                            <button class="build-stage" type="button" data-build-stage="4" aria-pressed="false" aria-controls="alarm-stage-view" data-image="images/LightAlarm/finished_alarm_angled.jpeg" data-alt="Assembled light-responsive alarm in its green enclosure" data-index="04 / 04" data-title="Assembled prototype" data-description="The completed prototype combines the enclosure, display, sensors, and one-button interface."><img src="images/LightAlarm/finished_alarm_angled.jpeg" alt="" loading="lazy" decoding="async" width="160" height="100"><span><small>04</small>Finished alarm</span></button>
+                        </div>
+                        <div class="system-layout" id="alarm-stage-view">
+                            <button class="build-photo" id="build-stage-open" type="button" aria-label="Open the selected alarm build photograph">
+                                <img id="build-stage-image" src="images/LightAlarm/breadboard_prototype_lcd_active.jpeg" alt="Alarm breadboard with ESP32, sensors, and active LCD" loading="lazy" decoding="async" width="1600" height="1200">
+                            </button>
+                            <div class="system-notes" aria-live="polite" aria-atomic="true">
+                                <span class="part-index" id="stage-index">01 / 04</span>
+                                <h4 id="stage-title">Breadboard testing</h4>
+                                <p id="stage-description">The ESP32, sensors, and LCD are connected on a breadboard before the electronics move to a soldered prototype.</p>
+                            </div>
+                        </div>
+                        <div class="lab-resources">
+                            <button type="button" onclick="openGallery(['images/LightAlarm/circuit_schematic.png'])">View circuit schematic ↗</button>
+                            <button type="button" onclick="openGallery(['images/LightAlarm/enclosure_technical_drawing.png','images/LightAlarm/internal_assembly.jpeg'])">View enclosure details ↗</button>
+                        </div>
+                    </div>
+                </section>
 
                 <!-- Project 3 -->
                 <div class="card p-8 rounded-2xl flex flex-col">
@@ -1718,7 +1809,7 @@
     </footer>
 
     <!-- UPDATED MODAL (Gallery Style) -->
-    <div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+    <div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center hidden" role="dialog" aria-modal="true" aria-label="Project image gallery">
         <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" onclick="closeModal()"></div>
         
         <div class="relative w-full max-w-6xl px-4 flex flex-col items-center">
@@ -1726,12 +1817,12 @@
                 <img id="modalImage" src="" alt="Selected project gallery image" class="rounded-lg shadow-2xl border border-emerald-400/20">
                 
                 <!-- Prev Arrow -->
-                <button id="prevBtn" onclick="changeImage(-1)" class="absolute left-[-60px] top-1/2 -translate-y-1/2 text-emerald-50/50 hover:text-emerald-300 transition-all hidden">
+                <button id="prevBtn" aria-label="Previous image" onclick="changeImage(-1)" class="absolute left-[-60px] top-1/2 -translate-y-1/2 text-emerald-50/50 hover:text-emerald-300 transition-all hidden">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 </button>
                 
                 <!-- Next Arrow -->
-                <button id="nextBtn" onclick="changeImage(1)" class="absolute right-[-60px] top-1/2 -translate-y-1/2 text-emerald-50/50 hover:text-emerald-300 transition-all hidden">
+                <button id="nextBtn" aria-label="Next image" onclick="changeImage(1)" class="absolute right-[-60px] top-1/2 -translate-y-1/2 text-emerald-50/50 hover:text-emerald-300 transition-all hidden">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </button>
             </div>
@@ -1739,7 +1830,7 @@
             <!-- Counter Info -->
             <div id="galleryInfo" class="mt-6 text-emerald-50/60 text-[10px] font-bold tracking-[0.3em] uppercase"></div>
 
-            <button onclick="closeModal()" class="mt-4 text-emerald-50/45 hover:text-emerald-300 font-bold tracking-widest text-[10px] uppercase border-b border-emerald-400/20 pb-1 transition-all">
+            <button data-gallery-close onclick="closeModal()" class="mt-4 text-emerald-50/45 hover:text-emerald-300 font-bold tracking-widest text-[10px] uppercase border-b border-emerald-400/20 pb-1 transition-all">
                 Close [Esc]
             </button>
         </div>
@@ -1775,6 +1866,9 @@
             document.getElementById(sectionId).classList.remove('hidden');
             closeMobileNav();
             window.scrollTo(0, 0);
+            handleElectricFieldScroll();
+            syncElectricFieldAnimation();
+            document.dispatchEvent(new CustomEvent('portfolio:section', { detail: { id: sectionId } }));
         }
 
         function setSkillCategory(category) {
@@ -1793,11 +1887,21 @@
         const heroStage = document.getElementById('heroStage');
         const electricField = document.querySelector('.electric-field');
         const electricPaths = document.querySelectorAll('.electric-path');
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+        // This site's plasma is intentionally continuous; the visible control pauses it.
+        // Reduced-motion visitors get a slower, gentler version without a system change.
+        let siteMotionPaused = false;
+        let waveFrame = null;
+        let waveVisible = true;
+        let waveTime = 0;
+        let waveLastTime = null;
 
         const cursor = {
             x: 500,
             y: 285,
+            targetX: 500,
+            targetY: 285,
+            strength: 0,
             active: false
         };
 
@@ -1823,25 +1927,20 @@
                     Math.sin((x * freq * 2.4) - (time * speed * 1.8) + phase) * amp * 0.28 +
                     Math.sin((x * 0.055) + (time * 0.0021) + phase) * amp * 0.13;
 
-                // Intentional waveform spikes so it feels more like electricity/plasma
-                y += gaussian(x, 220, 26) * -105;
-                y += gaussian(x, 285, 18) * 92;
-                y += gaussian(x, 390, 34) * -78;
-                y += gaussian(x, 520, 22) * 118;
-                y += gaussian(x, 655, 30) * -88;
-                y += gaussian(x, 760, 44) * 62;
+                // Let the original plasma peaks drift as well as ripple.
+                y += gaussian(x, 220 + Math.sin(time * 0.0012 + 0) * 38, 26) * -105;
+                y += gaussian(x, 285 + Math.sin(time * 0.0012 + 0.8) * 38, 18) * 92;
+                y += gaussian(x, 390 + Math.sin(time * 0.0012 + 1.6) * 38, 34) * -78;
+                y += gaussian(x, 520 + Math.sin(time * 0.0012 + 2.4) * 38, 22) * 118;
+                y += gaussian(x, 655 + Math.sin(time * 0.0012 + 3.2) * 38, 30) * -88;
+                y += gaussian(x, 760 + Math.sin(time * 0.0012 + 4.0) * 38, 44) * 62;
 
-                // Mouse disturbance
-                if (cursor.active) {
-                    const dx = x - cursor.x;
-                    const dy = baseY - cursor.y;
-                    const influence = gaussian(dx, 0, 150) * Math.max(0, 1 - Math.abs(dy) / 260);
-                    const flicker =
-                        Math.sin((x * 0.15) + (time * 0.012) + phase) * 32 * influence +
-                        Math.sin((x * 0.31) - (time * 0.018)) * 18 * influence;
-
-                    y += (dy * 0.24 * influence) + flicker;
-                }
+                // A localized pull and high-frequency arcs follow the hovering pointer.
+                const influence = gaussian(x, cursor.x, 105) * cursor.strength;
+                const pull = Math.max(-150, Math.min(150, cursor.y - baseY));
+                y += pull * 0.7 * influence
+                    + Math.sin(x * 0.12 - time * 0.011 + phase) * 50 * influence
+                    + Math.sin(x * 0.25 + time * 0.016) * 22 * influence;
 
                 points.push([x, y]);
             }
@@ -1859,24 +1958,59 @@
             return d;
         }
 
-        function animateElectricField(time) {
+        function renderElectricField() {
+            const geometry = new Map();
             electricPaths.forEach(path => {
-                path.setAttribute('d', buildWavePath(path, time));
+                const key = JSON.stringify(path.dataset);
+                if (!geometry.has(key)) geometry.set(key, buildWavePath(path, waveTime));
+                path.setAttribute('d', geometry.get(key));
             });
+        }
 
-            requestAnimationFrame(animateElectricField);
+        function canAnimateElectricField() {
+            return !siteMotionPaused && !document.hidden && waveVisible
+                && !heroStage.closest('.content-section').classList.contains('hidden');
+        }
+
+        function animateElectricField(now) {
+            waveFrame = null;
+            if (!canAnimateElectricField()) { waveLastTime = null; return; }
+            const elapsed = waveLastTime === null ? 0 : Math.min(now - waveLastTime, 50);
+            waveLastTime = now;
+            waveTime += elapsed * (motionPreference.matches ? 0.55 : 1);
+            const easing = 1 - Math.exp(-elapsed / 90);
+            cursor.x += (cursor.targetX - cursor.x) * easing;
+            cursor.y += (cursor.targetY - cursor.y) * easing;
+            cursor.strength += ((cursor.active ? 1 : 0) - cursor.strength) * easing;
+            renderElectricField();
+            waveFrame = requestAnimationFrame(animateElectricField);
+        }
+
+        function syncElectricFieldAnimation() {
+            if (waveFrame !== null) cancelAnimationFrame(waveFrame);
+            waveFrame = null;
+            waveLastTime = null;
+            if (canAnimateElectricField()) waveFrame = requestAnimationFrame(animateElectricField);
+        }
+
+        function toggleSiteMotion() {
+            siteMotionPaused = !siteMotionPaused;
+            document.body.dataset.motionPaused = String(siteMotionPaused);
+            const button = document.querySelector('.motion-toggle');
+            const label = siteMotionPaused ? 'Play animations' : 'Pause animations';
+            button.setAttribute('aria-label', label);
+            button.title = label;
+            syncElectricFieldAnimation();
         }
 
         function disturbElectricField(event) {
-            if (!heroStage || heroStage.closest('.content-section').classList.contains('hidden')) return;
-
-            cursor.x = (event.clientX / window.innerWidth) * 1000;
-            const fieldRect = document.querySelector('.electric-field').getBoundingClientRect();
-            cursor.y = ((event.clientY - fieldRect.top) / fieldRect.height) * 1000;
-            cursor.active = true;
-
-            document.body.style.setProperty('--cursor-x', `${event.clientX}px`);
-            document.body.style.setProperty('--cursor-y', `${event.clientY}px`);
+            if (!canAnimateElectricField() || event.pointerType === 'touch') return;
+            const rect = electricField.getBoundingClientRect();
+            // Map the pointer into the SVG's actual 1000 x 1000 drawing coordinates.
+            cursor.targetX = (event.clientX - rect.left) / rect.width * 1000;
+            cursor.targetY = (event.clientY - rect.top) / rect.height * 1000;
+            cursor.active = cursor.targetX >= 0 && cursor.targetX <= 1000
+                && cursor.targetY >= 80 && cursor.targetY <= 520;
         }
 
         function getElectricFieldRestTop() {
@@ -1917,17 +2051,18 @@
             }
         }
 
-        if (prefersReducedMotion) {
-            electricPaths.forEach(path => {
-                path.setAttribute('d', buildWavePath(path, 0));
-            });
-        } else {
-            window.addEventListener('mousemove', disturbElectricField);
-            window.addEventListener('mouseleave', () => {
-                cursor.active = false;
-            });
-            requestAnimationFrame(animateElectricField);
-        }
+        window.addEventListener('pointermove', disturbElectricField, { passive: true });
+        document.documentElement.addEventListener('pointerleave', () => { cursor.active = false; });
+        window.addEventListener('blur', () => { cursor.active = false; });
+        document.addEventListener('visibilitychange', syncElectricFieldAnimation);
+        motionPreference.addEventListener('change', syncElectricFieldAnimation);
+        const waveObserver = new IntersectionObserver(entries => {
+            waveVisible = entries[0].isIntersecting;
+            syncElectricFieldAnimation();
+        });
+        waveObserver.observe(electricField);
+        renderElectricField();
+        syncElectricFieldAnimation();
 
         window.addEventListener('scroll', handleElectricFieldScroll);
         window.addEventListener('resize', handleElectricFieldScroll);
@@ -1937,13 +2072,17 @@
         // Gallery Logic
         let currentImages = [];
         let currentIndex = 0;
+        let galleryReturnFocus = null;
 
         function openGallery(imgArray) {
+            if (!imgArray.length) return;
+            galleryReturnFocus = document.activeElement;
             currentImages = imgArray;
             currentIndex = 0;
             updateModal();
             document.getElementById('imageModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+            document.querySelector('[data-gallery-close]').focus({ preventScroll: true });
         }
 
         function updateModal() {
@@ -1975,12 +2114,22 @@
         function closeModal() {
             document.getElementById('imageModal').classList.add('hidden');
             document.body.style.overflow = 'auto';
+            galleryReturnFocus?.focus({ preventScroll: true });
         }
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape") closeModal();
-            if (e.key === "ArrowRight") changeImage(1);
-            if (e.key === "ArrowLeft") changeImage(-1);
+            const modal = document.getElementById('imageModal');
+            if (modal.classList.contains('hidden')) return;
+            if (e.key === "Escape") { e.preventDefault(); closeModal(); }
+            if (e.key === "ArrowRight") { e.preventDefault(); changeImage(1); }
+            if (e.key === "ArrowLeft") { e.preventDefault(); changeImage(-1); }
+            if (e.key === "Tab") {
+                const controls = [...modal.querySelectorAll('button')].filter(button => !button.classList.contains('hidden'));
+                const first = controls[0];
+                const last = controls[controls.length - 1];
+                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            }
         });
     </script>
 
