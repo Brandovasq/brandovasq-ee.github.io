@@ -976,32 +976,6 @@
                 line-height: 0.8;
             }
 
-            #prevBtn,
-            #nextBtn {
-                position: fixed;
-                z-index: 2;
-                width: 2.75rem;
-                height: 2.75rem;
-                border: 1px solid rgba(52, 211, 153, 0.28);
-                border-radius: 999px;
-                background: rgba(3, 7, 5, 0.78);
-                backdrop-filter: blur(10px);
-            }
-
-            #prevBtn {
-                left: 0.75rem;
-            }
-
-            #nextBtn {
-                right: 0.75rem;
-            }
-
-            #modalImage {
-                max-height: 85vh;
-                max-width: calc(100vw - 2rem);
-                width: auto;
-                object-fit: contain;
-            }
         }
 
         @media (max-width: 380px) {
@@ -1030,12 +1004,6 @@
                 scroll-behavior: auto !important;
                 transition-duration: 0.01ms !important;
             }
-        }
-
-        #modalImage {
-            max-height: 85vh;
-            width: auto;
-            object-fit: contain;
         }
 
         .pdf-preview {
@@ -1812,25 +1780,25 @@
     <div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center hidden" role="dialog" aria-modal="true" aria-label="Project image gallery">
         <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" onclick="closeModal()"></div>
         
-        <div class="relative w-full max-w-6xl px-4 flex flex-col items-center">
-            <div class="relative">
-                <img id="modalImage" src="" alt="Selected project gallery image" class="rounded-lg shadow-2xl border border-emerald-400/20">
+        <div class="gallery-shell">
+            <div class="gallery-stage">
+                <img id="modalImage" src="" alt="Selected project gallery image" class="shadow-2xl border border-emerald-400/20">
+            </div>
                 
                 <!-- Prev Arrow -->
-                <button id="prevBtn" aria-label="Previous image" onclick="changeImage(-1)" class="absolute left-[-60px] top-1/2 -translate-y-1/2 text-emerald-50/50 hover:text-emerald-300 transition-all hidden">
+                <button id="prevBtn" type="button" aria-label="Previous image" onclick="changeImage(-1)" class="gallery-arrow hidden">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 </button>
                 
                 <!-- Next Arrow -->
-                <button id="nextBtn" aria-label="Next image" onclick="changeImage(1)" class="absolute right-[-60px] top-1/2 -translate-y-1/2 text-emerald-50/50 hover:text-emerald-300 transition-all hidden">
+                <button id="nextBtn" type="button" aria-label="Next image" onclick="changeImage(1)" class="gallery-arrow hidden">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </button>
-            </div>
 
             <!-- Counter Info -->
-            <div id="galleryInfo" class="mt-6 text-emerald-50/60 text-[10px] font-bold tracking-[0.3em] uppercase"></div>
+            <div id="galleryInfo" class="gallery-info" aria-live="polite" aria-atomic="true"></div>
 
-            <button data-gallery-close onclick="closeModal()" class="mt-4 text-emerald-50/45 hover:text-emerald-300 font-bold tracking-widest text-[10px] uppercase border-b border-emerald-400/20 pb-1 transition-all">
+            <button data-gallery-close type="button" onclick="closeModal()" class="gallery-close">
                 Close [Esc]
             </button>
         </div>

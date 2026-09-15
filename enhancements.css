@@ -157,3 +157,132 @@
     .signal-node small { font-size: 0.75rem; letter-spacing: 0; }
     .build-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* Consistent photo proportions with a lightly fanned, individually inspectable stack. */
+#projects .preview-stack {
+    --thumb-width: clamp(92px, 27%, 118px);
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    isolation: isolate;
+}
+#projects .preview-stack .preview-img.thumb {
+    width: var(--thumb-width);
+    height: auto;
+    aspect-ratio: 16 / 10;
+    border-radius: 5px;
+}
+#projects .preview-stack .preview-img.thumb.two {
+    bottom: calc(1rem + var(--thumb-width) * 0.48);
+}
+@media (hover: hover) and (pointer: fine) {
+    #projects .preview-stack .preview-img.thumb {
+        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), filter 0.25s ease;
+    }
+    #projects .preview-stack .preview-img.thumb.two { transform-origin: right center; }
+    #projects .preview-stack:hover .preview-img.thumb.one {
+        transform: translate(-4px, -2px) rotate(8deg);
+    }
+    #projects .preview-stack:hover .preview-img.thumb.two {
+        transform: translate(-14px, -8px) rotate(-10deg);
+    }
+    #projects .card .preview-stack .preview-img.thumb.one:hover {
+        transform: translate(-4px, -2px) rotate(8deg) scale(1.85);
+    }
+    #projects .card .preview-stack .preview-img.thumb.two:hover {
+        transform: translate(-14px, -8px) rotate(-10deg) scale(1.85);
+    }
+}
+
+/* Controls belong to the viewport so image dimensions never move their targets. */
+#imageModal { z-index: 100; }
+.gallery-shell {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 64px 96px;
+    pointer-events: none;
+}
+.gallery-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+}
+#modalImage {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100vh - 128px);
+    max-height: calc(100dvh - 128px);
+    object-fit: contain;
+    border-radius: 6px;
+    pointer-events: auto;
+}
+.gallery-arrow, .gallery-close {
+    position: fixed;
+    pointer-events: auto;
+    border: 1px solid rgba(110, 231, 183, 0.3);
+    border-radius: 6px;
+    background: rgba(5, 17, 12, 0.9);
+    color: #c8eddb;
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.gallery-arrow {
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+}
+.gallery-arrow.hidden { display: none; }
+.gallery-arrow svg { width: 24px; height: 24px; }
+#prevBtn { left: max(24px, env(safe-area-inset-left)); }
+#nextBtn { right: max(24px, env(safe-area-inset-right)); }
+.gallery-close {
+    top: max(12px, env(safe-area-inset-top));
+    right: max(24px, env(safe-area-inset-right));
+    min-height: 40px;
+    padding: 0 14px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+.gallery-arrow:hover, .gallery-close:hover {
+    color: #effff7;
+    background: #173a2a;
+    border-color: #6ee7b7;
+}
+.gallery-arrow:focus-visible, .gallery-close:focus-visible {
+    outline: 2px solid #a2f4d1;
+    outline-offset: 4px;
+}
+.gallery-info {
+    position: fixed;
+    left: 50%;
+    bottom: max(24px, env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    color: #a7c8b8;
+    font: 11px 'Share Tech Mono', monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+@media (max-width: 640px) {
+    .gallery-shell { padding: 64px 12px 88px; }
+    #modalImage { max-height: calc(100vh - 152px); max-height: calc(100dvh - 152px); }
+    .gallery-arrow { top: auto; bottom: max(18px, env(safe-area-inset-bottom)); transform: none; }
+    #prevBtn { left: max(18px, env(safe-area-inset-left)); }
+    #nextBtn { right: max(18px, env(safe-area-inset-right)); }
+    .gallery-info { bottom: max(34px, calc(env(safe-area-inset-bottom) + 16px)); }
+    .gallery-close { right: max(12px, env(safe-area-inset-right)); }
+}
